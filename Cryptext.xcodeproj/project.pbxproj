@@ -1,0 +1,501 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D1206A418E7B45600B226C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1206A318E7B45600B226C3 /* Foundation.framework */; };
+		3D1206A618E7B45600B226C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1206A518E7B45600B226C3 /* CoreGraphics.framework */; };
+		3D1206A818E7B45600B226C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1206A718E7B45600B226C3 /* UIKit.framework */; };
+		3D1206AA18E7B45600B226C3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1206A918E7B45600B226C3 /* CoreData.framework */; };
+		3D1206B018E7B45600B226C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D1206AE18E7B45600B226C3 /* InfoPlist.strings */; };
+		3D1206B218E7B45600B226C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206B118E7B45600B226C3 /* main.m */; };
+		3D1206B618E7B45600B226C3 /* CTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206B518E7B45600B226C3 /* CTAppDelegate.m */; };
+		3D1206B918E7B45600B226C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D1206B718E7B45600B226C3 /* Main.storyboard */; };
+		3D1206BC18E7B45600B226C3 /* Cryptext.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206BA18E7B45600B226C3 /* Cryptext.xcdatamodeld */; };
+		3D1206BF18E7B45600B226C3 /* CTMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206BE18E7B45600B226C3 /* CTMasterViewController.m */; };
+		3D1206C218E7B45600B226C3 /* CTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206C118E7B45600B226C3 /* CTDetailViewController.m */; };
+		3D1206C418E7B45600B226C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D1206C318E7B45600B226C3 /* Images.xcassets */; };
+		3D1206CB18E7B45600B226C3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1206CA18E7B45600B226C3 /* XCTest.framework */; };
+		3D1206CC18E7B45600B226C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1206A318E7B45600B226C3 /* Foundation.framework */; };
+		3D1206CD18E7B45600B226C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1206A718E7B45600B226C3 /* UIKit.framework */; };
+		3D1206CE18E7B45600B226C3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1206A918E7B45600B226C3 /* CoreData.framework */; };
+		3D1206D618E7B45600B226C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D1206D418E7B45600B226C3 /* InfoPlist.strings */; };
+		3D1206D818E7B45600B226C3 /* CryptextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206D718E7B45600B226C3 /* CryptextTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3D1206CF18E7B45600B226C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D12069818E7B45600B226C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D12069F18E7B45600B226C3;
+			remoteInfo = Cryptext;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3D1206A018E7B45600B226C3 /* Cryptext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cryptext.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D1206A318E7B45600B226C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3D1206A518E7B45600B226C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3D1206A718E7B45600B226C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3D1206A918E7B45600B226C3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3D1206AD18E7B45600B226C3 /* Cryptext-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cryptext-Info.plist"; sourceTree = "<group>"; };
+		3D1206AF18E7B45600B226C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D1206B118E7B45600B226C3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3D1206B318E7B45600B226C3 /* Cryptext-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cryptext-Prefix.pch"; sourceTree = "<group>"; };
+		3D1206B418E7B45600B226C3 /* CTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTAppDelegate.h; sourceTree = "<group>"; };
+		3D1206B518E7B45600B226C3 /* CTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTAppDelegate.m; sourceTree = "<group>"; };
+		3D1206B818E7B45600B226C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3D1206BB18E7B45600B226C3 /* Cryptext.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cryptext.xcdatamodel; sourceTree = "<group>"; };
+		3D1206BD18E7B45600B226C3 /* CTMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTMasterViewController.h; sourceTree = "<group>"; };
+		3D1206BE18E7B45600B226C3 /* CTMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTMasterViewController.m; sourceTree = "<group>"; };
+		3D1206C018E7B45600B226C3 /* CTDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTDetailViewController.h; sourceTree = "<group>"; };
+		3D1206C118E7B45600B226C3 /* CTDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTDetailViewController.m; sourceTree = "<group>"; };
+		3D1206C318E7B45600B226C3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3D1206C918E7B45600B226C3 /* CryptextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D1206CA18E7B45600B226C3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		3D1206D318E7B45600B226C3 /* CryptextTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CryptextTests-Info.plist"; sourceTree = "<group>"; };
+		3D1206D518E7B45600B226C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D1206D718E7B45600B226C3 /* CryptextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CryptextTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D12069D18E7B45600B226C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1206A618E7B45600B226C3 /* CoreGraphics.framework in Frameworks */,
+				3D1206AA18E7B45600B226C3 /* CoreData.framework in Frameworks */,
+				3D1206A818E7B45600B226C3 /* UIKit.framework in Frameworks */,
+				3D1206A418E7B45600B226C3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D1206C618E7B45600B226C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1206CB18E7B45600B226C3 /* XCTest.framework in Frameworks */,
+				3D1206CE18E7B45600B226C3 /* CoreData.framework in Frameworks */,
+				3D1206CD18E7B45600B226C3 /* UIKit.framework in Frameworks */,
+				3D1206CC18E7B45600B226C3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3D12069718E7B45600B226C3 = {
+			isa = PBXGroup;
+			children = (
+				3D1206AB18E7B45600B226C3 /* Cryptext */,
+				3D1206D118E7B45600B226C3 /* CryptextTests */,
+				3D1206A218E7B45600B226C3 /* Frameworks */,
+				3D1206A118E7B45600B226C3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3D1206A118E7B45600B226C3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D1206A018E7B45600B226C3 /* Cryptext.app */,
+				3D1206C918E7B45600B226C3 /* CryptextTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D1206A218E7B45600B226C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D1206A318E7B45600B226C3 /* Foundation.framework */,
+				3D1206A518E7B45600B226C3 /* CoreGraphics.framework */,
+				3D1206A718E7B45600B226C3 /* UIKit.framework */,
+				3D1206A918E7B45600B226C3 /* CoreData.framework */,
+				3D1206CA18E7B45600B226C3 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3D1206AB18E7B45600B226C3 /* Cryptext */ = {
+			isa = PBXGroup;
+			children = (
+				3D1206B418E7B45600B226C3 /* CTAppDelegate.h */,
+				3D1206B518E7B45600B226C3 /* CTAppDelegate.m */,
+				3D1206B718E7B45600B226C3 /* Main.storyboard */,
+				3D1206BD18E7B45600B226C3 /* CTMasterViewController.h */,
+				3D1206BE18E7B45600B226C3 /* CTMasterViewController.m */,
+				3D1206C018E7B45600B226C3 /* CTDetailViewController.h */,
+				3D1206C118E7B45600B226C3 /* CTDetailViewController.m */,
+				3D1206C318E7B45600B226C3 /* Images.xcassets */,
+				3D1206BA18E7B45600B226C3 /* Cryptext.xcdatamodeld */,
+				3D1206AC18E7B45600B226C3 /* Supporting Files */,
+			);
+			path = Cryptext;
+			sourceTree = "<group>";
+		};
+		3D1206AC18E7B45600B226C3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3D1206AD18E7B45600B226C3 /* Cryptext-Info.plist */,
+				3D1206AE18E7B45600B226C3 /* InfoPlist.strings */,
+				3D1206B118E7B45600B226C3 /* main.m */,
+				3D1206B318E7B45600B226C3 /* Cryptext-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3D1206D118E7B45600B226C3 /* CryptextTests */ = {
+			isa = PBXGroup;
+			children = (
+				3D1206D718E7B45600B226C3 /* CryptextTests.m */,
+				3D1206D218E7B45600B226C3 /* Supporting Files */,
+			);
+			path = CryptextTests;
+			sourceTree = "<group>";
+		};
+		3D1206D218E7B45600B226C3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3D1206D318E7B45600B226C3 /* CryptextTests-Info.plist */,
+				3D1206D418E7B45600B226C3 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3D12069F18E7B45600B226C3 /* Cryptext */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D1206DB18E7B45600B226C3 /* Build configuration list for PBXNativeTarget "Cryptext" */;
+			buildPhases = (
+				3D12069C18E7B45600B226C3 /* Sources */,
+				3D12069D18E7B45600B226C3 /* Frameworks */,
+				3D12069E18E7B45600B226C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cryptext;
+			productName = Cryptext;
+			productReference = 3D1206A018E7B45600B226C3 /* Cryptext.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3D1206C818E7B45600B226C3 /* CryptextTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D1206DE18E7B45600B226C3 /* Build configuration list for PBXNativeTarget "CryptextTests" */;
+			buildPhases = (
+				3D1206C518E7B45600B226C3 /* Sources */,
+				3D1206C618E7B45600B226C3 /* Frameworks */,
+				3D1206C718E7B45600B226C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3D1206D018E7B45600B226C3 /* PBXTargetDependency */,
+			);
+			name = CryptextTests;
+			productName = CryptextTests;
+			productReference = 3D1206C918E7B45600B226C3 /* CryptextTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3D12069818E7B45600B226C3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CT;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Milk LLC";
+				TargetAttributes = {
+					3D1206C818E7B45600B226C3 = {
+						TestTargetID = 3D12069F18E7B45600B226C3;
+					};
+				};
+			};
+			buildConfigurationList = 3D12069B18E7B45600B226C3 /* Build configuration list for PBXProject "Cryptext" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3D12069718E7B45600B226C3;
+			productRefGroup = 3D1206A118E7B45600B226C3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3D12069F18E7B45600B226C3 /* Cryptext */,
+				3D1206C818E7B45600B226C3 /* CryptextTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3D12069E18E7B45600B226C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1206C418E7B45600B226C3 /* Images.xcassets in Resources */,
+				3D1206B018E7B45600B226C3 /* InfoPlist.strings in Resources */,
+				3D1206B918E7B45600B226C3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D1206C718E7B45600B226C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1206D618E7B45600B226C3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3D12069C18E7B45600B226C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1206B218E7B45600B226C3 /* main.m in Sources */,
+				3D1206BF18E7B45600B226C3 /* CTMasterViewController.m in Sources */,
+				3D1206BC18E7B45600B226C3 /* Cryptext.xcdatamodeld in Sources */,
+				3D1206B618E7B45600B226C3 /* CTAppDelegate.m in Sources */,
+				3D1206C218E7B45600B226C3 /* CTDetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D1206C518E7B45600B226C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1206D818E7B45600B226C3 /* CryptextTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3D1206D018E7B45600B226C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D12069F18E7B45600B226C3 /* Cryptext */;
+			targetProxy = 3D1206CF18E7B45600B226C3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3D1206AE18E7B45600B226C3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D1206AF18E7B45600B226C3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3D1206B718E7B45600B226C3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D1206B818E7B45600B226C3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3D1206D418E7B45600B226C3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D1206D518E7B45600B226C3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3D1206D918E7B45600B226C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3D1206DA18E7B45600B226C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3D1206DC18E7B45600B226C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cryptext/Cryptext-Prefix.pch";
+				INFOPLIST_FILE = "Cryptext/Cryptext-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3D1206DD18E7B45600B226C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cryptext/Cryptext-Prefix.pch";
+				INFOPLIST_FILE = "Cryptext/Cryptext-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3D1206DF18E7B45600B226C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cryptext.app/Cryptext";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cryptext/Cryptext-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CryptextTests/CryptextTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3D1206E018E7B45600B226C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cryptext.app/Cryptext";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cryptext/Cryptext-Prefix.pch";
+				INFOPLIST_FILE = "CryptextTests/CryptextTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D12069B18E7B45600B226C3 /* Build configuration list for PBXProject "Cryptext" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D1206D918E7B45600B226C3 /* Debug */,
+				3D1206DA18E7B45600B226C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D1206DB18E7B45600B226C3 /* Build configuration list for PBXNativeTarget "Cryptext" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D1206DC18E7B45600B226C3 /* Debug */,
+				3D1206DD18E7B45600B226C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3D1206DE18E7B45600B226C3 /* Build configuration list for PBXNativeTarget "CryptextTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D1206DF18E7B45600B226C3 /* Debug */,
+				3D1206E018E7B45600B226C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3D1206BA18E7B45600B226C3 /* Cryptext.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3D1206BB18E7B45600B226C3 /* Cryptext.xcdatamodel */,
+			);
+			currentVersion = 3D1206BB18E7B45600B226C3 /* Cryptext.xcdatamodel */;
+			path = Cryptext.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3D12069818E7B45600B226C3 /* Project object */;
+}
