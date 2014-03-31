@@ -60,18 +60,12 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     if ([url.scheme isEqualToString:@"cryptext"]) {
-        NSArray* toks = [url.resourceSpecifier componentsSeparatedByString:@"/"];
-        if (toks.count < 2) {
-            NSLog(@"bad url %@", url);
-            return NO;
-        }
-        
-        if ([@"pk" isEqualToString:toks[0]]) {
-            NSLog(@"key %@", toks[1]);
+        if ([@"pk" isEqualToString:url.host]) {
+            NSLog(@"key %@", url.query);
             return YES;
         }
-        else if ([@"m" isEqualToString:toks[0]]) {
-            NSLog(@"message %@", toks[1]);
+        else if ([@"m" isEqualToString:url.host]) {
+            NSLog(@"message %@", url.query);
             return YES;
         }
     }

@@ -10,11 +10,14 @@
 #import "CTDetailViewController.h"
 #import "SecKeyWrapper.h"
 #import "CTAppDelegate.h"
+#import <MessageUI/MessageUI.h>
 
 // Valid sizes are currently 512, 1024, and 2048.
 #define kAsymmetricSecKeyPairModulusSize 512
 
 @interface CTMasterViewController ()
+<MFMessageComposeViewControllerDelegate>
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
@@ -90,10 +93,27 @@
 //    spinner.hidden = YES;
 //    label.hidden = YES;
     NSLog(@"gen key: %@", [[[SecKeyWrapper sharedWrapper] getPublicKeyBits] base64EncodedStringWithOptions:0]);
+    
+    // test how url appears in imessage
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+    if ([MFMessageComposeViewController canSendText])
+    {
+        controller.body = [NSString stringWithFormat:@"I'm using CrypText. Please add my public key: cryptext://pk?%@", [[[SecKeyWrapper sharedWrapper] getPublicKeyBits] base64EncodedStringWithOptions:0]];
+//        controller.recipients = [NSArray arrayWithObjects:@"1(234)567-8910", nil];
+        controller.messageComposeDelegate = self;
+        [self presentViewController:controller animated:YES completion:nil];
+    }
 }
 
 - (IBAction)cancelKeyGeneration
 {
+}
+
+#pragma mark - message UI
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table View
