@@ -92,13 +92,19 @@
 //    [spinner stopAnimating];
 //    spinner.hidden = YES;
 //    label.hidden = YES;
-    NSLog(@"gen key: %@", [[[SecKeyWrapper sharedWrapper] getPublicKeyBits] base64EncodedStringWithOptions:0]);
+    NSString* key = [[[SecKeyWrapper sharedWrapper] getPublicKeyBits] base64EncodedStringWithOptions:0];
+    // URL safe substitutions according to RFC 4648: http://en.wikipedia.org/wiki/Base64
+    key = [key stringByReplacingOccurrencesOfString:@"+" withString:@"-"];
+    key = [key stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
+    key = [key stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
+    
+    NSLog(@"gen key: %@", key);
     
     // test how url appears in imessage
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     if ([MFMessageComposeViewController canSendText])
     {
-        controller.body = [NSString stringWithFormat:@"I'm using CrypText. Please add my public key: cryptext://pk?%@", [[[SecKeyWrapper sharedWrapper] getPublicKeyBits] base64EncodedStringWithOptions:0]];
+        controller.body = [NSString stringWithFormat:@"I'm using CrypText. Please add my public key: cryptext://pk?%@", key];
 //        controller.recipients = [NSArray arrayWithObjects:@"1(234)567-8910", nil];
         controller.messageComposeDelegate = self;
         [self presentViewController:controller animated:YES completion:nil];
