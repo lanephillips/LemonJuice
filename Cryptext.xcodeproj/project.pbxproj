@@ -26,6 +26,7 @@
 		3D1206D618E7B45600B226C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D1206D418E7B45600B226C3 /* InfoPlist.strings */; };
 		3D1206D818E7B45600B226C3 /* CryptextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206D718E7B45600B226C3 /* CryptextTests.m */; };
 		3D1206E318E8DA1100B226C3 /* SecKeyWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206E218E8DA1100B226C3 /* SecKeyWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		3D1206E618EA0C9600B226C3 /* NSData+RFC4648.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206E518EA0C9600B226C3 /* NSData+RFC4648.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		3D1206D718E7B45600B226C3 /* CryptextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CryptextTests.m; sourceTree = "<group>"; };
 		3D1206E118E8DA1100B226C3 /* SecKeyWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecKeyWrapper.h; sourceTree = "<group>"; };
 		3D1206E218E8DA1100B226C3 /* SecKeyWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecKeyWrapper.m; sourceTree = "<group>"; };
+		3D1206E418EA0C9600B226C3 /* NSData+RFC4648.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+RFC4648.h"; sourceTree = "<group>"; };
+		3D1206E518EA0C9600B226C3 /* NSData+RFC4648.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+RFC4648.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 				3D1206BA18E7B45600B226C3 /* Cryptext.xcdatamodeld */,
 				3D1206E118E8DA1100B226C3 /* SecKeyWrapper.h */,
 				3D1206E218E8DA1100B226C3 /* SecKeyWrapper.m */,
+				3D1206E418EA0C9600B226C3 /* NSData+RFC4648.h */,
+				3D1206E518EA0C9600B226C3 /* NSData+RFC4648.m */,
 				3D1206AC18E7B45600B226C3 /* Supporting Files */,
 			);
 			path = Cryptext;
@@ -270,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D1206B218E7B45600B226C3 /* main.m in Sources */,
+				3D1206E618EA0C9600B226C3 /* NSData+RFC4648.m in Sources */,
 				3D1206BF18E7B45600B226C3 /* CTMasterViewController.m in Sources */,
 				3D1206BC18E7B45600B226C3 /* Cryptext.xcdatamodeld in Sources */,
 				3D1206E318E8DA1100B226C3 /* SecKeyWrapper.m in Sources */,

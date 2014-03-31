@@ -11,6 +11,7 @@
 #import "SecKeyWrapper.h"
 #import "CTAppDelegate.h"
 #import <MessageUI/MessageUI.h>
+#import "NSData+RFC4648.h"
 
 // Valid sizes are currently 512, 1024, and 2048.
 #define kAsymmetricSecKeyPairModulusSize 512
@@ -18,7 +19,6 @@
 @interface CTMasterViewController ()
 <MFMessageComposeViewControllerDelegate>
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @implementation CTMasterViewController
@@ -92,11 +92,7 @@
 //    [spinner stopAnimating];
 //    spinner.hidden = YES;
 //    label.hidden = YES;
-    NSString* key = [[[SecKeyWrapper sharedWrapper] getPublicKeyBits] base64EncodedStringWithOptions:0];
-    // URL safe substitutions according to RFC 4648: http://en.wikipedia.org/wiki/Base64
-    key = [key stringByReplacingOccurrencesOfString:@"+" withString:@"-"];
-    key = [key stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
-    key = [key stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
+    NSString* key = [[[SecKeyWrapper sharedWrapper] getPublicKeyBits] rfc4648Base64EncodedString];
     
     NSLog(@"gen key: %@", key);
     
@@ -126,19 +122,53 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+    return 1 + [[self.fetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    if (section == 0) {
+        NSData* pubKey = [[SecKeyWrapper sharedWrapper] getPublicKeyBits];
+        return pubKey? 2 : 1;
+    }
+    
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section - 1];
     return [sectionInfo numberOfObjects];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return @"Your Keys";
+    }
+    return @"Your Contacts";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        NSData* pubKey = [[SecKeyWrapper sharedWrapper] getPublicKeyBits];
+        if (pubKey && indexPath.row == 0) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShareCell" forIndexPath:indexPath];
+            cell.detailTextLabel.text = pubKey.rfc4648Base64EncodedString;
+            return cell;
+        } else if (pubKey && indexPath.row == 1) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DestroyCell" forIndexPath:indexPath];
+            return cell;
+        } else {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CreateCell" forIndexPath:indexPath];
+            // TODO: use storyboard segues
+            cell.textLabel.text = @"Create Your Key";
+            return cell;
+        }
+    }
+
+    indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section - 1];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell" forIndexPath:indexPath];
+    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    cell.detailTextLabel.text = @"TODO";
+    
     return cell;
 }
 
@@ -253,7 +283,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+//            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
@@ -266,22 +296,6 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
-}
-
-/*
-// Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
- 
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    // In the simplest, most efficient, case, reload the table view.
-    [self.tableView reloadData];
-}
- */
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
 }
 
 @end
