@@ -7,8 +7,12 @@
 //
 
 #import "CTMasterViewController.h"
-
 #import "CTDetailViewController.h"
+#import "SecKeyWrapper.h"
+#import "CTAppDelegate.h"
+
+// Valid sizes are currently 512, 1024, and 2048.
+#define kAsymmetricSecKeyPairModulusSize 512
 
 @interface CTMasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -27,7 +31,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGeneratingKeys)];
     self.navigationItem.rightBarButtonItem = addButton;
 }
 
@@ -55,6 +60,40 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+}
+
+#pragma mark - key pair generation
+
+- (IBAction)startGeneratingKeys
+{
+    // start generation operation
+//    [spinner startAnimating];
+//    spinner.hidden = NO;
+//    label.hidden = NO;
+    NSInvocationOperation * genOp = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(generateKeyPairOperation) object:nil];
+    [APP.cryptoQueue addOperation:genOp];
+}
+
+- (void)generateKeyPairOperation
+{
+    @autoreleasepool {
+        // Generate the asymmetric key (public and private)
+        [[SecKeyWrapper sharedWrapper] generateKeyPair:kAsymmetricSecKeyPairModulusSize];
+        [[SecKeyWrapper sharedWrapper] generateSymmetricKey];
+        [self performSelectorOnMainThread:@selector(generateKeyPairCompleted) withObject:nil waitUntilDone:NO];
+    }
+}
+
+- (void)generateKeyPairCompleted
+{
+//    [spinner stopAnimating];
+//    spinner.hidden = YES;
+//    label.hidden = YES;
+    NSLog(@"gen key: %@", [[[SecKeyWrapper sharedWrapper] getPublicKeyBits] base64EncodedStringWithOptions:0]);
+}
+
+- (IBAction)cancelKeyGeneration
+{
 }
 
 #pragma mark - Table View

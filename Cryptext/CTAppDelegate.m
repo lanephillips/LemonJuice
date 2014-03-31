@@ -22,6 +22,10 @@
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     CTMasterViewController *controller = (CTMasterViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
+
+    NSOperationQueue * theQueue = [[NSOperationQueue alloc] init];
+    self.cryptoQueue = theQueue;
+
     return YES;
 }
 							

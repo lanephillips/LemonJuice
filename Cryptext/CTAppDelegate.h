@@ -16,7 +16,11 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (retain) NSOperationQueue * cryptoQueue;
+
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
 @end
+
+#define APP ((CTAppDelegate *)[UIApplication sharedApplication].delegate)

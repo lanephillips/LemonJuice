@@ -25,6 +25,7 @@
 		3D1206CE18E7B45600B226C3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1206A918E7B45600B226C3 /* CoreData.framework */; };
 		3D1206D618E7B45600B226C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D1206D418E7B45600B226C3 /* InfoPlist.strings */; };
 		3D1206D818E7B45600B226C3 /* CryptextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206D718E7B45600B226C3 /* CryptextTests.m */; };
+		3D1206E318E8DA1100B226C3 /* SecKeyWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206E218E8DA1100B226C3 /* SecKeyWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		3D1206D318E7B45600B226C3 /* CryptextTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CryptextTests-Info.plist"; sourceTree = "<group>"; };
 		3D1206D518E7B45600B226C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D1206D718E7B45600B226C3 /* CryptextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CryptextTests.m; sourceTree = "<group>"; };
+		3D1206E118E8DA1100B226C3 /* SecKeyWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecKeyWrapper.h; sourceTree = "<group>"; };
+		3D1206E218E8DA1100B226C3 /* SecKeyWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecKeyWrapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +135,8 @@
 				3D1206C118E7B45600B226C3 /* CTDetailViewController.m */,
 				3D1206C318E7B45600B226C3 /* Images.xcassets */,
 				3D1206BA18E7B45600B226C3 /* Cryptext.xcdatamodeld */,
+				3D1206E118E8DA1100B226C3 /* SecKeyWrapper.h */,
+				3D1206E218E8DA1100B226C3 /* SecKeyWrapper.m */,
 				3D1206AC18E7B45600B226C3 /* Supporting Files */,
 			);
 			path = Cryptext;
@@ -267,6 +272,7 @@
 				3D1206B218E7B45600B226C3 /* main.m in Sources */,
 				3D1206BF18E7B45600B226C3 /* CTMasterViewController.m in Sources */,
 				3D1206BC18E7B45600B226C3 /* Cryptext.xcdatamodeld in Sources */,
+				3D1206E318E8DA1100B226C3 /* SecKeyWrapper.m in Sources */,
 				3D1206B618E7B45600B226C3 /* CTAppDelegate.m in Sources */,
 				3D1206C218E7B45600B226C3 /* CTDetailViewController.m in Sources */,
 			);
