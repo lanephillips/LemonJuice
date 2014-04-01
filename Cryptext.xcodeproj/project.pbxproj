@@ -31,6 +31,7 @@
 		3D1206EC18EA636D00B226C3 /* CTCreateKeysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206EB18EA636D00B226C3 /* CTCreateKeysViewController.m */; };
 		3D1206EF18EB0F6000B226C3 /* CTContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206EE18EB0F6000B226C3 /* CTContact.m */; };
 		3D1206F218EB13E800B226C3 /* CTAddContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206F118EB13E800B226C3 /* CTAddContactViewController.m */; };
+		3D1206F518EB276D00B226C3 /* CTComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206F418EB276D00B226C3 /* CTComposeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		3D1206EE18EB0F6000B226C3 /* CTContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTContact.m; sourceTree = "<group>"; };
 		3D1206F018EB13E800B226C3 /* CTAddContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAddContactViewController.h; sourceTree = "<group>"; };
 		3D1206F118EB13E800B226C3 /* CTAddContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAddContactViewController.m; sourceTree = "<group>"; };
+		3D1206F318EB276D00B226C3 /* CTComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTComposeViewController.h; sourceTree = "<group>"; };
+		3D1206F418EB276D00B226C3 /* CTComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTComposeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +151,8 @@
 				3D1206BE18E7B45600B226C3 /* CTMasterViewController.m */,
 				3D1206F018EB13E800B226C3 /* CTAddContactViewController.h */,
 				3D1206F118EB13E800B226C3 /* CTAddContactViewController.m */,
+				3D1206F318EB276D00B226C3 /* CTComposeViewController.h */,
+				3D1206F418EB276D00B226C3 /* CTComposeViewController.m */,
 				3D1206E718EA607900B226C3 /* CTDeleteKeysViewController.h */,
 				3D1206E818EA607900B226C3 /* CTDeleteKeysViewController.m */,
 				3D1206EA18EA636D00B226C3 /* CTCreateKeysViewController.h */,
@@ -294,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D1206F518EB276D00B226C3 /* CTComposeViewController.m in Sources */,
 				3D1206B218E7B45600B226C3 /* main.m in Sources */,
 				3D1206E618EA0C9600B226C3 /* NSData+RFC4648.m in Sources */,
 				3D1206EC18EA636D00B226C3 /* CTCreateKeysViewController.m in Sources */,

@@ -13,6 +13,7 @@
 #import <MessageUI/MessageUI.h>
 #import "NSData+RFC4648.h"
 #import "CTContact.h"
+#import "CTComposeViewController.h"
 
 @interface CTMasterViewController ()
 <MFMessageComposeViewControllerDelegate>
@@ -80,7 +81,12 @@
     } else if ([segue.identifier isEqualToString:@"destroyKeys"]) {
 
     } else if ([segue.identifier isEqualToString:@"sendMessage"]) {
-        // nope
+        CTComposeViewController* vc = segue.destinationViewController;
+        
+        NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
+        indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section - 1];
+        CTContact *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        vc.contact = object;
     }
 }
 
@@ -196,7 +202,7 @@
             // use segue
         }
     } else {
-        // TODO: compose message to recipient
+        // use segue
     }
 }
 

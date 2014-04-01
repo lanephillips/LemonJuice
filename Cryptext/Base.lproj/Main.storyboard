@@ -117,6 +117,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="4Se-dn-GsB" kind="push" identifier="sendMessage" id="mEP-ST-Yiz"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -259,6 +262,75 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHg-lV-hDi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1215" y="244"/>
+        </scene>
+        <!--Compose View Controller - Message to-->
+        <scene sceneID="Wab-QF-b6u">
+            <objects>
+                <viewController id="4Se-dn-GsB" customClass="CTComposeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Erm-rv-2YU"/>
+                        <viewControllerLayoutGuide type="bottom" id="2cp-Zg-Urj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9KU-0a-ckc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vuO-ON-qMm">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SAO-Z4-wFJ">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="XVP-cu-3s1">
+                                        <rect key="frame" x="142" y="234" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="XVP-cu-3s1" secondAttribute="centerX" id="aml-fZ-odV"/>
+                                    <constraint firstAttribute="centerY" secondItem="XVP-cu-3s1" secondAttribute="centerY" id="cqE-yP-KNa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vuO-ON-qMm" firstAttribute="leading" secondItem="9KU-0a-ckc" secondAttribute="leading" id="33i-2d-Qc4"/>
+                            <constraint firstAttribute="bottom" secondItem="vuO-ON-qMm" secondAttribute="bottom" id="CBh-xB-yCP"/>
+                            <constraint firstAttribute="trailing" secondItem="SAO-Z4-wFJ" secondAttribute="trailing" id="O1X-Ro-BF8"/>
+                            <constraint firstItem="vuO-ON-qMm" firstAttribute="top" secondItem="Erm-rv-2YU" secondAttribute="bottom" id="QTU-Yo-oaP"/>
+                            <constraint firstAttribute="trailing" secondItem="vuO-ON-qMm" secondAttribute="trailing" id="VaS-21-cdo"/>
+                            <constraint firstItem="2cp-Zg-Urj" firstAttribute="top" secondItem="SAO-Z4-wFJ" secondAttribute="bottom" id="d3I-VE-ksm"/>
+                            <constraint firstItem="SAO-Z4-wFJ" firstAttribute="top" secondItem="Erm-rv-2YU" secondAttribute="bottom" id="m4N-r5-6S7"/>
+                            <constraint firstItem="SAO-Z4-wFJ" firstAttribute="leading" secondItem="9KU-0a-ckc" secondAttribute="leading" id="zbM-dD-upD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Message to" id="IlG-ed-7AU">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="YqE-Uq-2CT">
+                            <connections>
+                                <action selector="doCancel:" destination="4Se-dn-GsB" id="kC9-dI-1OK"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Send" style="done" id="QsE-go-XzK">
+                            <connections>
+                                <action selector="doSend:" destination="4Se-dn-GsB" id="dJq-bK-mqd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="messageTxt" destination="vuO-ON-qMm" id="flZ-AX-Pof"/>
+                        <outlet property="spinnerView" destination="SAO-Z4-wFJ" id="Uh6-C3-KSh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sTQ-ex-BJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1215" y="941"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
