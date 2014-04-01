@@ -163,10 +163,10 @@
             </objects>
             <point key="canvasLocation" x="1215" y="-1144"/>
         </scene>
-        <!--View Controller-->
+        <!--Delete Keys View Controller-->
         <scene sceneID="89y-q4-iKi">
             <objects>
-                <viewController id="GTj-Vi-3bR" sceneMemberID="viewController">
+                <viewController id="GTj-Vi-3bR" customClass="CTDeleteKeysViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3EH-Od-S44"/>
                         <viewControllerLayoutGuide type="bottom" id="C0N-UT-rmE"/>

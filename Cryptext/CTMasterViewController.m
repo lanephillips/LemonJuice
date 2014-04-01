@@ -39,6 +39,12 @@
 //    self.navigationItem.rightBarButtonItem = addButton;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -72,7 +78,7 @@
     } else if ([segue.identifier isEqualToString:@"shareKey"]) {
         // nope
     } else if ([segue.identifier isEqualToString:@"destroyKeys"]) {
-        
+
     } else if ([segue.identifier isEqualToString:@"sendMessage"]) {
         // nope
     }
@@ -83,9 +89,6 @@
 - (IBAction)startGeneratingKeys
 {
     // start generation operation
-//    [spinner startAnimating];
-//    spinner.hidden = NO;
-//    label.hidden = NO;
     NSInvocationOperation * genOp = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(generateKeyPairOperation) object:nil];
     [APP.cryptoQueue addOperation:genOp];
 }

@@ -27,6 +27,7 @@
 		3D1206D818E7B45600B226C3 /* CryptextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206D718E7B45600B226C3 /* CryptextTests.m */; };
 		3D1206E318E8DA1100B226C3 /* SecKeyWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206E218E8DA1100B226C3 /* SecKeyWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		3D1206E618EA0C9600B226C3 /* NSData+RFC4648.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206E518EA0C9600B226C3 /* NSData+RFC4648.m */; };
+		3D1206E918EA607900B226C3 /* CTDeleteKeysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206E818EA607900B226C3 /* CTDeleteKeysViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		3D1206E218E8DA1100B226C3 /* SecKeyWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecKeyWrapper.m; sourceTree = "<group>"; };
 		3D1206E418EA0C9600B226C3 /* NSData+RFC4648.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+RFC4648.h"; sourceTree = "<group>"; };
 		3D1206E518EA0C9600B226C3 /* NSData+RFC4648.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+RFC4648.m"; sourceTree = "<group>"; };
+		3D1206E718EA607900B226C3 /* CTDeleteKeysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDeleteKeysViewController.h; sourceTree = "<group>"; };
+		3D1206E818EA607900B226C3 /* CTDeleteKeysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDeleteKeysViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 				3D1206B718E7B45600B226C3 /* Main.storyboard */,
 				3D1206BD18E7B45600B226C3 /* CTMasterViewController.h */,
 				3D1206BE18E7B45600B226C3 /* CTMasterViewController.m */,
+				3D1206E718EA607900B226C3 /* CTDeleteKeysViewController.h */,
+				3D1206E818EA607900B226C3 /* CTDeleteKeysViewController.m */,
 				3D1206C018E7B45600B226C3 /* CTDetailViewController.h */,
 				3D1206C118E7B45600B226C3 /* CTDetailViewController.m */,
 				3D1206C318E7B45600B226C3 /* Images.xcassets */,
@@ -278,6 +283,7 @@
 				3D1206E618EA0C9600B226C3 /* NSData+RFC4648.m in Sources */,
 				3D1206BF18E7B45600B226C3 /* CTMasterViewController.m in Sources */,
 				3D1206BC18E7B45600B226C3 /* Cryptext.xcdatamodeld in Sources */,
+				3D1206E918EA607900B226C3 /* CTDeleteKeysViewController.m in Sources */,
 				3D1206E318E8DA1100B226C3 /* SecKeyWrapper.m in Sources */,
 				3D1206B618E7B45600B226C3 /* CTAppDelegate.m in Sources */,
 				3D1206C218E7B45600B226C3 /* CTDetailViewController.m in Sources */,
