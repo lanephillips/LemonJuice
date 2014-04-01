@@ -41,6 +41,10 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
+    // for security, pop any encrypt or decrypt views
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    [navigationController popToRootViewControllerAnimated:NO];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
