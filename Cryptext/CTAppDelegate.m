@@ -7,8 +7,9 @@
 //
 
 #import "CTAppDelegate.h"
-
 #import "CTMasterViewController.h"
+#import "NSData+RFC4648.h"
+#import "CTAddContactViewController.h"
 
 @implementation CTAppDelegate
 
@@ -61,11 +62,42 @@
 {
     if ([url.scheme isEqualToString:@"cryptext"]) {
         if ([@"pk" isEqualToString:url.host]) {
+            NSString* keyStr = url.query;
             NSLog(@"key %@", url.query);
+//            NSData* key = [NSData dataWithRFC4648Base64EncodedString:keyStr];
+            NSData* key = [[NSData alloc] initWithBase64EncodedString:keyStr options:0];
+            if (key) {
+                BOOL isNew = NO;
+                CTContact* c = [CTContact contactForKey:key inContext:self.managedObjectContext create:YES isNew:&isNew];
+                if (isNew) {
+                    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+                    CTAddContactViewController* addVC = [navigationController.storyboard instantiateViewControllerWithIdentifier:@"addKey"];
+                    addVC.contact = c;
+                    addVC.cancelHandler = ^() {
+                        [self.managedObjectContext deleteObject:c];
+                    };
+                    addVC.saveHandler = ^() {
+                        [self saveContext];
+                    };
+                    [navigationController pushViewController:addVC animated:YES];
+                } else {
+                    [[[UIAlertView alloc] initWithTitle:@"Duplicate Contact"
+                      // TODO: but maybe they want to edit the nickname?
+                                                message:@"You have already added this contact's public key."
+                                               delegate:nil
+                                      cancelButtonTitle:@"Close"
+                                      otherButtonTitles:nil]
+                     show];
+                }
+            } else {
+                NSLog(@"couldn't parse key %@", keyStr);
+                // TODO: tell user?
+            }
             return YES;
         }
         else if ([@"m" isEqualToString:url.host]) {
             NSLog(@"message %@", url.query);
+            // TODO: decrypt message with our own key
             return YES;
         }
     }

@@ -29,6 +29,8 @@
 		3D1206E618EA0C9600B226C3 /* NSData+RFC4648.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206E518EA0C9600B226C3 /* NSData+RFC4648.m */; };
 		3D1206E918EA607900B226C3 /* CTDeleteKeysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206E818EA607900B226C3 /* CTDeleteKeysViewController.m */; };
 		3D1206EC18EA636D00B226C3 /* CTCreateKeysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206EB18EA636D00B226C3 /* CTCreateKeysViewController.m */; };
+		3D1206EF18EB0F6000B226C3 /* CTContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206EE18EB0F6000B226C3 /* CTContact.m */; };
+		3D1206F218EB13E800B226C3 /* CTAddContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206F118EB13E800B226C3 /* CTAddContactViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,10 @@
 		3D1206E818EA607900B226C3 /* CTDeleteKeysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDeleteKeysViewController.m; sourceTree = "<group>"; };
 		3D1206EA18EA636D00B226C3 /* CTCreateKeysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCreateKeysViewController.h; sourceTree = "<group>"; };
 		3D1206EB18EA636D00B226C3 /* CTCreateKeysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCreateKeysViewController.m; sourceTree = "<group>"; };
+		3D1206ED18EB0F6000B226C3 /* CTContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTContact.h; sourceTree = "<group>"; };
+		3D1206EE18EB0F6000B226C3 /* CTContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTContact.m; sourceTree = "<group>"; };
+		3D1206F018EB13E800B226C3 /* CTAddContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTAddContactViewController.h; sourceTree = "<group>"; };
+		3D1206F118EB13E800B226C3 /* CTAddContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAddContactViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +146,8 @@
 				3D1206B718E7B45600B226C3 /* Main.storyboard */,
 				3D1206BD18E7B45600B226C3 /* CTMasterViewController.h */,
 				3D1206BE18E7B45600B226C3 /* CTMasterViewController.m */,
+				3D1206F018EB13E800B226C3 /* CTAddContactViewController.h */,
+				3D1206F118EB13E800B226C3 /* CTAddContactViewController.m */,
 				3D1206E718EA607900B226C3 /* CTDeleteKeysViewController.h */,
 				3D1206E818EA607900B226C3 /* CTDeleteKeysViewController.m */,
 				3D1206EA18EA636D00B226C3 /* CTCreateKeysViewController.h */,
@@ -148,6 +156,8 @@
 				3D1206C118E7B45600B226C3 /* CTDetailViewController.m */,
 				3D1206C318E7B45600B226C3 /* Images.xcassets */,
 				3D1206BA18E7B45600B226C3 /* Cryptext.xcdatamodeld */,
+				3D1206ED18EB0F6000B226C3 /* CTContact.h */,
+				3D1206EE18EB0F6000B226C3 /* CTContact.m */,
 				3D1206E118E8DA1100B226C3 /* SecKeyWrapper.h */,
 				3D1206E218E8DA1100B226C3 /* SecKeyWrapper.m */,
 				3D1206E418EA0C9600B226C3 /* NSData+RFC4648.h */,
@@ -287,10 +297,12 @@
 				3D1206B218E7B45600B226C3 /* main.m in Sources */,
 				3D1206E618EA0C9600B226C3 /* NSData+RFC4648.m in Sources */,
 				3D1206EC18EA636D00B226C3 /* CTCreateKeysViewController.m in Sources */,
+				3D1206F218EB13E800B226C3 /* CTAddContactViewController.m in Sources */,
 				3D1206BF18E7B45600B226C3 /* CTMasterViewController.m in Sources */,
 				3D1206BC18E7B45600B226C3 /* Cryptext.xcdatamodeld in Sources */,
 				3D1206E918EA607900B226C3 /* CTDeleteKeysViewController.m in Sources */,
 				3D1206E318E8DA1100B226C3 /* SecKeyWrapper.m in Sources */,
+				3D1206EF18EB0F6000B226C3 /* CTContact.m in Sources */,
 				3D1206B618E7B45600B226C3 /* CTAppDelegate.m in Sources */,
 				3D1206C218E7B45600B226C3 /* CTDetailViewController.m in Sources */,
 			);

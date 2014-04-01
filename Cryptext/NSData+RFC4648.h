@@ -10,6 +10,7 @@
 
 @interface NSData (RFC4648)
 
-- (NSString*)rfc4648Base64EncodedString;
+//+ (instancetype)dataWithRFC4648Base64EncodedString:(NSString*)s;
+//- (NSString*)rfc4648Base64EncodedString;
 
 @end
