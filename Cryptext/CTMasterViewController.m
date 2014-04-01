@@ -35,8 +35,8 @@
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
 //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGeneratingKeys)];
-    self.navigationItem.rightBarButtonItem = addButton;
+//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGeneratingKeys)];
+//    self.navigationItem.rightBarButtonItem = addButton;
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,6 +65,19 @@
     }
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"createKeys"]) {
+        [self startGeneratingKeys];
+    } else if ([segue.identifier isEqualToString:@"shareKey"]) {
+        // nope
+    } else if ([segue.identifier isEqualToString:@"destroyKeys"]) {
+        
+    } else if ([segue.identifier isEqualToString:@"sendMessage"]) {
+        // nope
+    }
+}
+
 #pragma mark - key pair generation
 
 - (IBAction)startGeneratingKeys
@@ -82,29 +95,14 @@
     @autoreleasepool {
         // Generate the asymmetric key (public and private)
         [[SecKeyWrapper sharedWrapper] generateKeyPair:kAsymmetricSecKeyPairModulusSize];
-        [[SecKeyWrapper sharedWrapper] generateSymmetricKey];
+//        [[SecKeyWrapper sharedWrapper] generateSymmetricKey];
         [self performSelectorOnMainThread:@selector(generateKeyPairCompleted) withObject:nil waitUntilDone:NO];
     }
 }
 
 - (void)generateKeyPairCompleted
 {
-//    [spinner stopAnimating];
-//    spinner.hidden = YES;
-//    label.hidden = YES;
-    NSString* key = [[[SecKeyWrapper sharedWrapper] getPublicKeyBits] rfc4648Base64EncodedString];
-    
-    NSLog(@"gen key: %@", key);
-    
-    // test how url appears in imessage
-    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
-    if ([MFMessageComposeViewController canSendText])
-    {
-        controller.body = [NSString stringWithFormat:@"I'm using CrypText. Please add my public key: cryptext://pk?%@", key];
-//        controller.recipients = [NSArray arrayWithObjects:@"1(234)567-8910", nil];
-        controller.messageComposeDelegate = self;
-        [self presentViewController:controller animated:YES completion:nil];
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)cancelKeyGeneration
@@ -200,12 +198,27 @@
     return NO;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
+    if (indexPath.section == 0) {
+        NSData* pubKey = [[SecKeyWrapper sharedWrapper] getPublicKeyBits];
+        if (pubKey && indexPath.row == 0) { // share
+            if ([MFMessageComposeViewController canSendText])
+            {
+                MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+                NSString* key = [[[SecKeyWrapper sharedWrapper] getPublicKeyBits] rfc4648Base64EncodedString];
+                controller.body = [NSString stringWithFormat:@"I'm using CrypText. Please add my public key: cryptext://pk?%@", key];
+                //        controller.recipients = [NSArray arrayWithObjects:@"1(234)567-8910", nil];
+                controller.messageComposeDelegate = self;
+                [self presentViewController:controller animated:YES completion:nil];
+            }
+        } else if (pubKey && indexPath.row == 1) {
+            // use segue
+        } else {
+            // use segue
+        }
+    } else {
+        // TODO: compose message to recipient
     }
 }
 
