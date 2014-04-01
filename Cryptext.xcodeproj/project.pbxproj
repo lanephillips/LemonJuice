@@ -32,6 +32,7 @@
 		3D1206EF18EB0F6000B226C3 /* CTContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206EE18EB0F6000B226C3 /* CTContact.m */; };
 		3D1206F218EB13E800B226C3 /* CTAddContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206F118EB13E800B226C3 /* CTAddContactViewController.m */; };
 		3D1206F518EB276D00B226C3 /* CTComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206F418EB276D00B226C3 /* CTComposeViewController.m */; };
+		3D1206F818EB485B00B226C3 /* CTDecryptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206F718EB485B00B226C3 /* CTDecryptViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		3D1206F118EB13E800B226C3 /* CTAddContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTAddContactViewController.m; sourceTree = "<group>"; };
 		3D1206F318EB276D00B226C3 /* CTComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTComposeViewController.h; sourceTree = "<group>"; };
 		3D1206F418EB276D00B226C3 /* CTComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTComposeViewController.m; sourceTree = "<group>"; };
+		3D1206F618EB485B00B226C3 /* CTDecryptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDecryptViewController.h; sourceTree = "<group>"; };
+		3D1206F718EB485B00B226C3 /* CTDecryptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDecryptViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,8 @@
 		3D12069718E7B45600B226C3 = {
 			isa = PBXGroup;
 			children = (
+				3D1206F618EB485B00B226C3 /* CTDecryptViewController.h */,
+				3D1206F718EB485B00B226C3 /* CTDecryptViewController.m */,
 				3D1206AB18E7B45600B226C3 /* Cryptext */,
 				3D1206D118E7B45600B226C3 /* CryptextTests */,
 				3D1206A218E7B45600B226C3 /* Frameworks */,
@@ -308,6 +313,7 @@
 				3D1206BC18E7B45600B226C3 /* Cryptext.xcdatamodeld in Sources */,
 				3D1206E918EA607900B226C3 /* CTDeleteKeysViewController.m in Sources */,
 				3D1206E318E8DA1100B226C3 /* SecKeyWrapper.m in Sources */,
+				3D1206F818EB485B00B226C3 /* CTDecryptViewController.m in Sources */,
 				3D1206EF18EB0F6000B226C3 /* CTContact.m in Sources */,
 				3D1206B618E7B45600B226C3 /* CTAppDelegate.m in Sources */,
 				3D1206C218E7B45600B226C3 /* CTDetailViewController.m in Sources */,

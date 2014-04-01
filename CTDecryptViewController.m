@@ -1,0 +1,91 @@
+//
+//  CTDecryptViewController.m
+//  Cryptext
+//
+//  Created by Lane Phillips on 4/1/14.
+//  Copyright (c) 2014 Milk LLC. All rights reserved.
+//
+
+#import "CTDecryptViewController.h"
+#import "SecKeyWrapper.h"
+#import "CTAppDelegate.h"
+
+@interface CTDecryptViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextView *messageTxt;
+@property (weak, nonatomic) IBOutlet UIView *spinnerView;
+
+@end
+
+@implementation CTDecryptViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.messageTxt.text = @"";
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self startDecryption];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.messageTxt.text = @"";
+    [super viewWillDisappear:animated];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - decryption
+
+- (IBAction)startDecryption
+{
+    // start operation
+    NSInvocationOperation * genOp = [[NSInvocationOperation alloc] initWithTarget:self
+                                                                         selector:@selector(decryptOperation:)
+                                                                           object:self.message];
+    self.messageTxt.text = @"";
+    [APP.cryptoQueue addOperation:genOp];
+    self.spinnerView.hidden = NO;
+}
+
+- (void)decryptOperation:(NSString*)message
+{
+    @autoreleasepool {
+        if (![[SecKeyWrapper sharedWrapper] getPrivateKeyRef]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.messageTxt.text = [NSString stringWithFormat:@"You don't have a private key to decrypt this message: %@", message];
+                self.spinnerView.hidden = YES;
+            });
+            return;
+        }
+        
+//        SecKeyRef key = [[SecKeyWrapper sharedWrapper] getPublicKeyRef];
+        // TODO: assumes a short message!!
+        NSData* msg = [[NSData alloc] initWithBase64EncodedString:message options:0];
+        msg = [[SecKeyWrapper sharedWrapper] unwrapSymmetricKey:msg];
+        [self performSelectorOnMainThread:@selector(decryptionCompleted:) withObject:msg waitUntilDone:NO];
+    }
+}
+
+- (void)decryptionCompleted:(NSData*)message
+{
+    self.messageTxt.text = [[NSString alloc] initWithData:message encoding:NSUTF8StringEncoding];
+    self.spinnerView.hidden = YES;
+}
+
+@end

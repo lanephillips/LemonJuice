@@ -10,6 +10,7 @@
 #import "CTMasterViewController.h"
 #import "NSData+RFC4648.h"
 #import "CTAddContactViewController.h"
+#import "CTDecryptViewController.h"
 
 @implementation CTAppDelegate
 
@@ -97,7 +98,10 @@
         }
         else if ([@"m" isEqualToString:url.host]) {
             NSLog(@"message %@", url.query);
-            // TODO: decrypt message with our own key
+            UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+            CTDecryptViewController* msgVC = [navigationController.storyboard instantiateViewControllerWithIdentifier:@"decryptMessage"];
+            msgVC.message = url.query;
+            [navigationController pushViewController:msgVC animated:YES];
             return YES;
         }
     }
