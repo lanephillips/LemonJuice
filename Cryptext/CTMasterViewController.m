@@ -13,11 +13,10 @@
 #import <MessageUI/MessageUI.h>
 #import "NSData+RFC4648.h"
 
-// Valid sizes are currently 512, 1024, and 2048.
-#define kAsymmetricSecKeyPairModulusSize 512
-
 @interface CTMasterViewController ()
 <MFMessageComposeViewControllerDelegate>
+
+@property (nonatomic) NSInteger dialogCloseCounter;
 
 @end
 
@@ -74,7 +73,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"createKeys"]) {
-        [self startGeneratingKeys];
+
     } else if ([segue.identifier isEqualToString:@"shareKey"]) {
         // nope
     } else if ([segue.identifier isEqualToString:@"destroyKeys"]) {
@@ -82,34 +81,6 @@
     } else if ([segue.identifier isEqualToString:@"sendMessage"]) {
         // nope
     }
-}
-
-#pragma mark - key pair generation
-
-- (IBAction)startGeneratingKeys
-{
-    // start generation operation
-    NSInvocationOperation * genOp = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(generateKeyPairOperation) object:nil];
-    [APP.cryptoQueue addOperation:genOp];
-}
-
-- (void)generateKeyPairOperation
-{
-    @autoreleasepool {
-        // Generate the asymmetric key (public and private)
-        [[SecKeyWrapper sharedWrapper] generateKeyPair:kAsymmetricSecKeyPairModulusSize];
-//        [[SecKeyWrapper sharedWrapper] generateSymmetricKey];
-        [self performSelectorOnMainThread:@selector(generateKeyPairCompleted) withObject:nil waitUntilDone:NO];
-    }
-}
-
-- (void)generateKeyPairCompleted
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)cancelKeyGeneration
-{
 }
 
 #pragma mark - message UI

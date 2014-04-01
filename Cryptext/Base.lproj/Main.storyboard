@@ -131,10 +131,10 @@
             </objects>
             <point key="canvasLocation" x="459" y="64"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Keys View Controller-->
         <scene sceneID="lSl-dN-7J5">
             <objects>
-                <viewController id="6BQ-1R-vLX" sceneMemberID="viewController">
+                <viewController id="6BQ-1R-vLX" customClass="CTCreateKeysViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7UB-aH-tph"/>
                         <viewControllerLayoutGuide type="bottom" id="gvl-nB-UsA"/>
