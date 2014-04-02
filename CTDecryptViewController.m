@@ -66,7 +66,8 @@
 - (void)decryptOperation:(NSString*)message
 {
     @autoreleasepool {
-        if (![[SecKeyWrapper sharedWrapper] getPrivateKeyRef]) {
+        SecKeyRef key = [[SecKeyWrapper sharedWrapper] getPrivateKeyRef];
+        if (!key) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.messageTxt.text = [NSString stringWithFormat:@"You don't have a private key to decrypt this message: %@", message];
                 self.spinnerView.hidden = YES;
@@ -74,11 +75,18 @@
             return;
         }
         
-//        SecKeyRef key = [[SecKeyWrapper sharedWrapper] getPublicKeyRef];
-        // TODO: assumes a short message!!
-        NSData* msg = [[NSData alloc] initWithBase64EncodedString:message options:0];
-        msg = [[SecKeyWrapper sharedWrapper] unwrapSymmetricKey:msg];
-        [self performSelectorOnMainThread:@selector(decryptionCompleted:) withObject:msg waitUntilDone:NO];
+        NSData* ciphertext = [[NSData alloc] initWithBase64EncodedString:message options:0];
+        
+        NSInteger blockSize = SecKeyGetBlockSize(key);
+        NSMutableData* plaintext = [[NSMutableData alloc] initWithCapacity:ciphertext.length / blockSize * (blockSize - kPKCS1)];
+        
+        for (NSInteger offset = 0; offset < ciphertext.length; offset += blockSize) {
+            NSData* block = [ciphertext subdataWithRange:NSMakeRange(offset, MIN(blockSize, ciphertext.length - offset))];
+            block = [[SecKeyWrapper sharedWrapper] unwrapSymmetricKey:block];
+            [plaintext appendData:block];
+        }
+        
+        [self performSelectorOnMainThread:@selector(decryptionCompleted:) withObject:plaintext waitUntilDone:NO];
     }
 }
 

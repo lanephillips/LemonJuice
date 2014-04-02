@@ -106,7 +106,7 @@
     
     if (canEmail && canText) {
         [[[UIAlertView alloc] initWithTitle:@"Send CrypText"
-                                    message:(isLong ? @"This message is longer than 160 characters, you should send it as mail." :
+                                    message:(isLong ? @"This message is longer than 160 characters, you should probably send it as mail." :
                                              @"Do you want to send this as text or mail?")
                                    delegate:self
                           cancelButtonTitle:nil
@@ -129,13 +129,12 @@
 - (void)smsCiphertext
 {
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
-    if ([MFMessageComposeViewController canSendAttachments]) {
+    if ([MFMessageComposeViewController canSendAttachments] && self.cipherURL.length > 160) {
         controller.body = @"See the attached CrypText.";
         [controller addAttachmentData:[self.cipherURL dataUsingEncoding:NSUTF8StringEncoding]
                        typeIdentifier:@"public.url"
                              filename:@"CrypText URL"];
     } else {
-        NSLog(@"can't send attachments");
         controller.body = self.cipherURL;
     }
     //        controller.recipients = [NSArray arrayWithObjects:@"1(234)567-8910", nil];
