@@ -12,10 +12,11 @@
 #import <MessageUI/MessageUI.h>
 
 @interface CTComposeViewController ()
-<MFMessageComposeViewControllerDelegate>
+<MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *messageTxt;
 @property (weak, nonatomic) IBOutlet UIView *spinnerView;
+@property (nonatomic) NSString* cipherURL;
 
 @end
 
@@ -80,24 +81,75 @@
 {
     @autoreleasepool {
         SecKeyRef key = [[SecKeyWrapper sharedWrapper] addPeerPublicKey:self.contact.nickname keyBits:self.contact.key];
-        // TODO: assumes a short message!!
-        NSData* msg = [message dataUsingEncoding:NSUTF8StringEncoding];
-        msg = [[SecKeyWrapper sharedWrapper] wrapSymmetricKey:msg keyRef:key];
+        NSData* plaintext = [message dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSInteger blockSize = SecKeyGetBlockSize(key) - kPKCS1;
+        NSMutableData* ciphertext = [[NSMutableData alloc] initWithCapacity:(plaintext.length + blockSize - 1) / blockSize * (blockSize + kPKCS1)];
+        
+        for (NSInteger offset = 0; offset < plaintext.length; offset += blockSize) {
+            NSData* block = [plaintext subdataWithRange:NSMakeRange(offset, MIN(blockSize, plaintext.length - offset))];
+            block = [[SecKeyWrapper sharedWrapper] wrapSymmetricKey:block keyRef:key];
+            [ciphertext appendData:block];
+        }
+        
         [[SecKeyWrapper sharedWrapper] removePeerPublicKey:self.contact.nickname];
-        [self performSelectorOnMainThread:@selector(encryptionCompleted:) withObject:msg waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(encryptionCompleted:) withObject:ciphertext waitUntilDone:NO];
     }
 }
 
 - (void)encryptionCompleted:(NSData*)message
 {
-    if ([MFMessageComposeViewController canSendText])
-    {
-        MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
-        controller.body = [NSString stringWithFormat:@"cryptext://m?%@", [message base64EncodedStringWithOptions:0]];
-        //        controller.recipients = [NSArray arrayWithObjects:@"1(234)567-8910", nil];
-        controller.messageComposeDelegate = self;
-        [self presentViewController:controller animated:YES completion:nil];
+    self.cipherURL = [NSString stringWithFormat:@"cryptext://m?%@", [message base64EncodedStringWithOptions:0]];
+    BOOL isLong = self.cipherURL.length > 160;
+    BOOL canEmail = [MFMailComposeViewController canSendMail];
+    BOOL canText = [MFMessageComposeViewController canSendText];
+    
+    if (canEmail && canText) {
+        [[[UIAlertView alloc] initWithTitle:@"Send CrypText"
+                                    message:(isLong ? @"This message is longer than 160 characters, you should send it as mail." :
+                                             @"Do you want to send this as text or mail?")
+                                   delegate:self
+                          cancelButtonTitle:nil
+                          otherButtonTitles:@"Text", @"Mail", nil]
+         show];
+    } else if (canText && !canEmail) {
+        [self smsCiphertext];
+    } else if (canEmail && !canText) {
+        [self emailCiphertext];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"No Text or Email"
+                                    message:[NSString stringWithFormat:@"This device can't send text or mail. Copy this URL to send the message: %@", self.cipherURL]
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles:nil]
+         show];
     }
+}
+
+- (void)smsCiphertext
+{
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+    if ([MFMessageComposeViewController canSendAttachments]) {
+        controller.body = @"See the attached CrypText.";
+        [controller addAttachmentData:[self.cipherURL dataUsingEncoding:NSUTF8StringEncoding]
+                       typeIdentifier:@"public.url"
+                             filename:@"CrypText URL"];
+    } else {
+        NSLog(@"can't send attachments");
+        controller.body = self.cipherURL;
+    }
+    //        controller.recipients = [NSArray arrayWithObjects:@"1(234)567-8910", nil];
+    controller.messageComposeDelegate = self;
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)emailCiphertext
+{
+    MFMailComposeViewController* vc = [[MFMailComposeViewController alloc] init];
+    [vc setSubject:@"I sent you a CrypText"];
+    [vc setMessageBody:self.cipherURL isHTML:NO];
+    vc.mailComposeDelegate = self;
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - message delegate
@@ -105,8 +157,39 @@
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.navigationController popViewControllerAnimated:YES];
+        if (result == MessageComposeResultSent) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else if (result == MessageComposeResultFailed) {
+            NSLog(@"Failed!");
+        }
     }];
+}
+
+#pragma mark - mail delegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (result == MFMailComposeResultSent || result == MFMailComposeResultSaved) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else if (result == MFMailComposeResultFailed) {
+            NSLog(@"Failed!");
+        }
+    }];
+}
+
+#pragma mark - alert delegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"button %d, first %d", buttonIndex, alertView.firstOtherButtonIndex);
+    if (buttonIndex == alertView.firstOtherButtonIndex) {
+        [self smsCiphertext];
+    } else {
+        [self emailCiphertext];
+    }
 }
 
 @end

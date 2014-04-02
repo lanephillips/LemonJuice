@@ -7,7 +7,6 @@
 //
 
 #import "CTMasterViewController.h"
-#import "CTDetailViewController.h"
 #import "SecKeyWrapper.h"
 #import "CTAppDelegate.h"
 #import <MessageUI/MessageUI.h>

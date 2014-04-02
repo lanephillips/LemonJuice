@@ -17,7 +17,6 @@
 		3D1206B918E7B45600B226C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D1206B718E7B45600B226C3 /* Main.storyboard */; };
 		3D1206BC18E7B45600B226C3 /* Cryptext.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206BA18E7B45600B226C3 /* Cryptext.xcdatamodeld */; };
 		3D1206BF18E7B45600B226C3 /* CTMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206BE18E7B45600B226C3 /* CTMasterViewController.m */; };
-		3D1206C218E7B45600B226C3 /* CTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206C118E7B45600B226C3 /* CTDetailViewController.m */; };
 		3D1206C418E7B45600B226C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D1206C318E7B45600B226C3 /* Images.xcassets */; };
 		3D1206CB18E7B45600B226C3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1206CA18E7B45600B226C3 /* XCTest.framework */; };
 		3D1206CC18E7B45600B226C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1206A318E7B45600B226C3 /* Foundation.framework */; };
@@ -61,8 +60,6 @@
 		3D1206BB18E7B45600B226C3 /* Cryptext.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cryptext.xcdatamodel; sourceTree = "<group>"; };
 		3D1206BD18E7B45600B226C3 /* CTMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTMasterViewController.h; sourceTree = "<group>"; };
 		3D1206BE18E7B45600B226C3 /* CTMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTMasterViewController.m; sourceTree = "<group>"; };
-		3D1206C018E7B45600B226C3 /* CTDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTDetailViewController.h; sourceTree = "<group>"; };
-		3D1206C118E7B45600B226C3 /* CTDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTDetailViewController.m; sourceTree = "<group>"; };
 		3D1206C318E7B45600B226C3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3D1206C918E7B45600B226C3 /* CryptextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D1206CA18E7B45600B226C3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -162,8 +159,6 @@
 				3D1206E818EA607900B226C3 /* CTDeleteKeysViewController.m */,
 				3D1206EA18EA636D00B226C3 /* CTCreateKeysViewController.h */,
 				3D1206EB18EA636D00B226C3 /* CTCreateKeysViewController.m */,
-				3D1206C018E7B45600B226C3 /* CTDetailViewController.h */,
-				3D1206C118E7B45600B226C3 /* CTDetailViewController.m */,
 				3D1206C318E7B45600B226C3 /* Images.xcassets */,
 				3D1206BA18E7B45600B226C3 /* Cryptext.xcdatamodeld */,
 				3D1206ED18EB0F6000B226C3 /* CTContact.h */,
@@ -316,7 +311,6 @@
 				3D1206F818EB485B00B226C3 /* CTDecryptViewController.m in Sources */,
 				3D1206EF18EB0F6000B226C3 /* CTContact.m in Sources */,
 				3D1206B618E7B45600B226C3 /* CTAppDelegate.m in Sources */,
-				3D1206C218E7B45600B226C3 /* CTDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +515,7 @@
 				3D1206DD18E7B45600B226C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D1206DE18E7B45600B226C3 /* Build configuration list for PBXNativeTarget "CryptextTests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +524,7 @@
 				3D1206E018E7B45600B226C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
