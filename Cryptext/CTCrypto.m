@@ -326,11 +326,15 @@ static const uint8_t privateKeyIdentifier[]		= kPrivateKeyTag;
                                 &keyBufferSize
 								);
 	
-	LOGGING_FACILITY1( sanityCheck == noErr, @"Error decrypting, OSStatus == %d.", (int)sanityCheck );
-	
-	// Build up plain text blob.
-	key = [NSData dataWithBytes:(const void *)keyBuffer length:(NSUInteger)keyBufferSize];
-	
+    if (sanityCheck != noErr) {
+        // this will happen if the key does not match
+        NSLog(@"Error decrypting, OSStatus == %d.", (int)sanityCheck );
+        key = nil;
+    } else {
+        // Build up plain text blob.
+        key = [NSData dataWithBytes:(const void *)keyBuffer length:(NSUInteger)keyBufferSize];
+    }
+    
 	if (keyBuffer) free(keyBuffer);
 	
 	return key;

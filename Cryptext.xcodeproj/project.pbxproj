@@ -32,6 +32,7 @@
 		3D1206F518EB276D00B226C3 /* CTComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206F418EB276D00B226C3 /* CTComposeViewController.m */; };
 		3D1206FB18EBBACF00B226C3 /* CTDecryptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206FA18EBBACF00B226C3 /* CTDecryptViewController.m */; };
 		3D1206FE18ECFB5000B226C3 /* CTCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206FD18ECFB5000B226C3 /* CTCrypto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3D12070118ED046200B226C3 /* CTNiceCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D12070018ED046200B226C3 /* CTNiceCrypto.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		3D1206FA18EBBACF00B226C3 /* CTDecryptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDecryptViewController.m; sourceTree = "<group>"; };
 		3D1206FC18ECFB5000B226C3 /* CTCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCrypto.h; sourceTree = "<group>"; };
 		3D1206FD18ECFB5000B226C3 /* CTCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCrypto.m; sourceTree = "<group>"; };
+		3D1206FF18ED046200B226C3 /* CTNiceCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTNiceCrypto.h; sourceTree = "<group>"; };
+		3D12070018ED046200B226C3 /* CTNiceCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTNiceCrypto.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 				3D1206EE18EB0F6000B226C3 /* CTContact.m */,
 				3D1206FC18ECFB5000B226C3 /* CTCrypto.h */,
 				3D1206FD18ECFB5000B226C3 /* CTCrypto.m */,
+				3D1206FF18ED046200B226C3 /* CTNiceCrypto.h */,
+				3D12070018ED046200B226C3 /* CTNiceCrypto.m */,
 				3D1206E418EA0C9600B226C3 /* NSData+RFC4648.h */,
 				3D1206E518EA0C9600B226C3 /* NSData+RFC4648.m */,
 				3D1206AC18E7B45600B226C3 /* Supporting Files */,
@@ -307,6 +312,7 @@
 				3D1206EC18EA636D00B226C3 /* CTCreateKeysViewController.m in Sources */,
 				3D1206F218EB13E800B226C3 /* CTAddContactViewController.m in Sources */,
 				3D1206BF18E7B45600B226C3 /* CTMasterViewController.m in Sources */,
+				3D12070118ED046200B226C3 /* CTNiceCrypto.m in Sources */,
 				3D1206BC18E7B45600B226C3 /* Cryptext.xcdatamodeld in Sources */,
 				3D1206E918EA607900B226C3 /* CTDeleteKeysViewController.m in Sources */,
 				3D1206EF18EB0F6000B226C3 /* CTContact.m in Sources */,

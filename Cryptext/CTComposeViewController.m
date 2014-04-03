@@ -21,12 +21,6 @@
 
 @implementation CTComposeViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -40,12 +34,6 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (IBAction)doCancel:(id)sender
 {
     self.messageTxt.text = @"";
@@ -54,75 +42,46 @@
 
 - (IBAction)doSend:(id)sender
 {
-    [self startEncryption];
+    self.spinnerView.hidden = NO;
+    [APP.crypto encryptString:self.messageTxt.text
+                withPublicKey:self.contact.key
+                   completion:^(NSString *base64EncodedCiphertext) {
+                       self.messageTxt.text = @"";
+                       self.spinnerView.hidden = YES;
+                       
+                       self.cipherURL = [NSString stringWithFormat:@"cryptext://m?%@", base64EncodedCiphertext];
+                       //BOOL isLong = self.cipherURL.length > 160;
+                       BOOL canEmail = [MFMailComposeViewController canSendMail];
+                       BOOL canText = [MFMessageComposeViewController canSendText];
+                       
+                       if (canEmail && canText) {
+                           [[[UIAlertView alloc] initWithTitle:@"Send CrypText"
+                                                       message:(/*isLong ? @"This message is longer than 160 characters, you should probably send it as mail." :*/
+                                                                @"Do you want to send this as text or mail?")
+                                                      delegate:self
+                                             cancelButtonTitle:nil
+                                             otherButtonTitles:@"Text", @"Mail", nil]
+                            show];
+                       } else if (canText && !canEmail) {
+                           [self smsCiphertext];
+                       } else if (canEmail && !canText) {
+                           [self emailCiphertext];
+                       } else {
+                           [[[UIAlertView alloc] initWithTitle:@"No Text or Email"
+                                                       message:[NSString stringWithFormat:@"This device can't send text or mail. Copy this URL to send the message: %@", self.cipherURL]
+                                                      delegate:nil
+                                             cancelButtonTitle:@"Close"
+                                             otherButtonTitles:nil]
+                            show];
+                       }
+
+                   }];
 }
 
 - (void)setContact:(CTContact *)contact
 {
     _contact = contact;
     self.title = [NSString stringWithFormat:@"Message to %@", contact.nickname];
-}
-
-#pragma mark - encryption
-
-- (IBAction)startEncryption
-{
-    // start operation
-    NSInvocationOperation * genOp = [[NSInvocationOperation alloc] initWithTarget:self
-                                                                         selector:@selector(encryptOperation:)
-                                                                           object:self.messageTxt.text];
-    self.messageTxt.text = @"";
-    [APP.cryptoQueue addOperation:genOp];
-    self.spinnerView.hidden = NO;
-}
-
-- (void)encryptOperation:(NSString*)message
-{
-    @autoreleasepool {
-        SecKeyRef key = [APP.crypto addPeerPublicKey:self.contact.nickname keyBits:self.contact.key];
-        NSData* plaintext = [message dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSInteger blockSize = SecKeyGetBlockSize(key) - kPKCS1;
-        NSMutableData* ciphertext = [[NSMutableData alloc] initWithCapacity:(plaintext.length + blockSize - 1) / blockSize * (blockSize + kPKCS1)];
-        
-        for (NSInteger offset = 0; offset < plaintext.length; offset += blockSize) {
-            NSData* block = [plaintext subdataWithRange:NSMakeRange(offset, MIN(blockSize, plaintext.length - offset))];
-            block = [APP.crypto encryptBlock:block keyRef:key];
-            [ciphertext appendData:block];
-        }
-        
-        [APP.crypto removePeerPublicKey:self.contact.nickname];
-        [self performSelectorOnMainThread:@selector(encryptionCompleted:) withObject:ciphertext waitUntilDone:NO];
-    }
-}
-
-- (void)encryptionCompleted:(NSData*)message
-{
-    self.cipherURL = [NSString stringWithFormat:@"cryptext://m?%@", [message base64EncodedStringWithOptions:0]];
-    BOOL isLong = self.cipherURL.length > 160;
-    BOOL canEmail = [MFMailComposeViewController canSendMail];
-    BOOL canText = [MFMessageComposeViewController canSendText];
-    
-    if (canEmail && canText) {
-        [[[UIAlertView alloc] initWithTitle:@"Send CrypText"
-                                    message:(isLong ? @"This message is longer than 160 characters, you should probably send it as mail." :
-                                             @"Do you want to send this as text or mail?")
-                                   delegate:self
-                          cancelButtonTitle:nil
-                          otherButtonTitles:@"Text", @"Mail", nil]
-         show];
-    } else if (canText && !canEmail) {
-        [self smsCiphertext];
-    } else if (canEmail && !canText) {
-        [self emailCiphertext];
-    } else {
-        [[[UIAlertView alloc] initWithTitle:@"No Text or Email"
-                                    message:[NSString stringWithFormat:@"This device can't send text or mail. Copy this URL to send the message: %@", self.cipherURL]
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil]
-         show];
-    }
 }
 
 - (void)smsCiphertext
@@ -182,7 +141,7 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"button %d, first %d", buttonIndex, alertView.firstOtherButtonIndex);
+    //NSLog(@"button %d, first %d", buttonIndex, alertView.firstOtherButtonIndex);
     if (buttonIndex == alertView.firstOtherButtonIndex) {
         [self smsCiphertext];
     } else {

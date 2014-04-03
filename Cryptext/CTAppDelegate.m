@@ -21,10 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    self.crypto = [[CTCrypto alloc] init];
-    
-    NSOperationQueue * theQueue = [[NSOperationQueue alloc] init];
-    self.cryptoQueue = theQueue;
+    self.crypto = [[CTNiceCrypto alloc] init];
     
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     CTMasterViewController *controller = (CTMasterViewController *)navigationController.topViewController;

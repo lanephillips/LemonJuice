@@ -105,7 +105,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        NSData* pubKey = [APP.crypto getPublicKeyBits];
+        NSString* pubKey = [APP.crypto base64EncodedPublicKey];
         return pubKey? 2 : 1;
     }
     
@@ -124,11 +124,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        NSData* pubKey = [APP.crypto getPublicKeyBits];
+        NSString* pubKey = [APP.crypto base64EncodedPublicKey];
         if (pubKey && indexPath.row == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShareCell" forIndexPath:indexPath];
 //            cell.detailTextLabel.text = pubKey.rfc4648Base64EncodedString;
-            cell.detailTextLabel.text = [pubKey base64EncodedStringWithOptions:0];
+            cell.detailTextLabel.text = pubKey;
             return cell;
         } else if (pubKey && indexPath.row == 1) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DestroyCell" forIndexPath:indexPath];
@@ -180,15 +180,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        NSData* pubKey = [APP.crypto getPublicKeyBits];
+        NSString* pubKey = [APP.crypto base64EncodedPublicKey];
         if (pubKey && indexPath.row == 0) { // share
             if ([MFMessageComposeViewController canSendText])
             {
                 MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
-                NSData* key = [APP.crypto getPublicKeyBits];
-//                NSString* key = [[APP.crypto getPublicKeyBits] rfc4648Base64EncodedString];
-                NSString* keyStr = [key base64EncodedStringWithOptions:0];
-                controller.body = [NSString stringWithFormat:@"I'm using CrypText. Please add my public key: cryptext://pk?%@", keyStr];
+                controller.body = [NSString stringWithFormat:@"I'm using CrypText. Please add my public key: cryptext://pk?%@", pubKey];
                 //        controller.recipients = [NSArray arrayWithObjects:@"1(234)567-8910", nil];
                 controller.messageComposeDelegate = self;
                 [self presentViewController:controller animated:YES completion:nil];

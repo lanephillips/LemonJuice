@@ -34,43 +34,17 @@
      show];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - alert view
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex != alertView.cancelButtonIndex) {
-        [self startDeletingKeys];
+        [APP.crypto deleteKeyPair:^{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
     } else {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
-}
-
-#pragma mark - key deletion
-
-- (IBAction)startDeletingKeys
-{
-    NSInvocationOperation * delOp = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(deleteKeyPairOperation) object:nil];
-    [APP.cryptoQueue addOperation:delOp];
-}
-
-- (void)deleteKeyPairOperation
-{
-    @autoreleasepool {
-        [APP.crypto deleteAsymmetricKeys];
-        //        [APP.crypto generateSymmetricKey];
-        [self performSelectorOnMainThread:@selector(deleteKeyPairCompleted) withObject:nil waitUntilDone:NO];
-    }
-}
-
-- (void)deleteKeyPairCompleted
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

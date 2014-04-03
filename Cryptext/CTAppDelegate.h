@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CTCrypto.h"
+#import "CTNiceCrypto.h"
 
 @interface CTAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -17,8 +17,7 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-@property (nonatomic) CTCrypto* crypto;
-@property (retain) NSOperationQueue * cryptoQueue;
+@property (nonatomic) CTNiceCrypto* crypto;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
