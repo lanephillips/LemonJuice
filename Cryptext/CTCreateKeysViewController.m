@@ -8,7 +8,6 @@
 
 #import "CTCreateKeysViewController.h"
 #import "CTAppDelegate.h"
-#import "SecKeyWrapper.h"
 
 // Valid sizes are currently 512, 1024, and 2048.
 #define kAsymmetricSecKeyPairModulusSize 512
@@ -51,8 +50,8 @@
 {
     @autoreleasepool {
         // Generate the asymmetric key (public and private)
-        [[SecKeyWrapper sharedWrapper] generateKeyPair:kAsymmetricSecKeyPairModulusSize];
-        //        [[SecKeyWrapper sharedWrapper] generateSymmetricKey];
+        [APP.crypto generateKeyPair:kAsymmetricSecKeyPairModulusSize];
+        //        [APP.crypto generateSymmetricKey];
         [self performSelectorOnMainThread:@selector(generateKeyPairCompleted) withObject:nil waitUntilDone:NO];
     }
 }

@@ -7,7 +7,6 @@
 //
 
 #import "CTMasterViewController.h"
-#import "SecKeyWrapper.h"
 #import "CTAppDelegate.h"
 #import <MessageUI/MessageUI.h>
 #import "NSData+RFC4648.h"
@@ -106,7 +105,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        NSData* pubKey = [[SecKeyWrapper sharedWrapper] getPublicKeyBits];
+        NSData* pubKey = [APP.crypto getPublicKeyBits];
         return pubKey? 2 : 1;
     }
     
@@ -125,7 +124,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        NSData* pubKey = [[SecKeyWrapper sharedWrapper] getPublicKeyBits];
+        NSData* pubKey = [APP.crypto getPublicKeyBits];
         if (pubKey && indexPath.row == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShareCell" forIndexPath:indexPath];
 //            cell.detailTextLabel.text = pubKey.rfc4648Base64EncodedString;
@@ -181,13 +180,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        NSData* pubKey = [[SecKeyWrapper sharedWrapper] getPublicKeyBits];
+        NSData* pubKey = [APP.crypto getPublicKeyBits];
         if (pubKey && indexPath.row == 0) { // share
             if ([MFMessageComposeViewController canSendText])
             {
                 MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
-                NSData* key = [[SecKeyWrapper sharedWrapper] getPublicKeyBits];
-//                NSString* key = [[[SecKeyWrapper sharedWrapper] getPublicKeyBits] rfc4648Base64EncodedString];
+                NSData* key = [APP.crypto getPublicKeyBits];
+//                NSString* key = [[APP.crypto getPublicKeyBits] rfc4648Base64EncodedString];
                 NSString* keyStr = [key base64EncodedStringWithOptions:0];
                 controller.body = [NSString stringWithFormat:@"I'm using CrypText. Please add my public key: cryptext://pk?%@", keyStr];
                 //        controller.recipients = [NSArray arrayWithObjects:@"1(234)567-8910", nil];

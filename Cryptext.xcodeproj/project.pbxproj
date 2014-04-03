@@ -24,7 +24,6 @@
 		3D1206CE18E7B45600B226C3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1206A918E7B45600B226C3 /* CoreData.framework */; };
 		3D1206D618E7B45600B226C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D1206D418E7B45600B226C3 /* InfoPlist.strings */; };
 		3D1206D818E7B45600B226C3 /* CryptextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206D718E7B45600B226C3 /* CryptextTests.m */; };
-		3D1206E318E8DA1100B226C3 /* SecKeyWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206E218E8DA1100B226C3 /* SecKeyWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		3D1206E618EA0C9600B226C3 /* NSData+RFC4648.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206E518EA0C9600B226C3 /* NSData+RFC4648.m */; };
 		3D1206E918EA607900B226C3 /* CTDeleteKeysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206E818EA607900B226C3 /* CTDeleteKeysViewController.m */; };
 		3D1206EC18EA636D00B226C3 /* CTCreateKeysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206EB18EA636D00B226C3 /* CTCreateKeysViewController.m */; };
@@ -32,6 +31,7 @@
 		3D1206F218EB13E800B226C3 /* CTAddContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206F118EB13E800B226C3 /* CTAddContactViewController.m */; };
 		3D1206F518EB276D00B226C3 /* CTComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206F418EB276D00B226C3 /* CTComposeViewController.m */; };
 		3D1206FB18EBBACF00B226C3 /* CTDecryptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206FA18EBBACF00B226C3 /* CTDecryptViewController.m */; };
+		3D1206FE18ECFB5000B226C3 /* CTCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206FD18ECFB5000B226C3 /* CTCrypto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,8 +66,6 @@
 		3D1206D318E7B45600B226C3 /* CryptextTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CryptextTests-Info.plist"; sourceTree = "<group>"; };
 		3D1206D518E7B45600B226C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D1206D718E7B45600B226C3 /* CryptextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CryptextTests.m; sourceTree = "<group>"; };
-		3D1206E118E8DA1100B226C3 /* SecKeyWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecKeyWrapper.h; sourceTree = "<group>"; };
-		3D1206E218E8DA1100B226C3 /* SecKeyWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecKeyWrapper.m; sourceTree = "<group>"; };
 		3D1206E418EA0C9600B226C3 /* NSData+RFC4648.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+RFC4648.h"; sourceTree = "<group>"; };
 		3D1206E518EA0C9600B226C3 /* NSData+RFC4648.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+RFC4648.m"; sourceTree = "<group>"; };
 		3D1206E718EA607900B226C3 /* CTDeleteKeysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDeleteKeysViewController.h; sourceTree = "<group>"; };
@@ -82,6 +80,8 @@
 		3D1206F418EB276D00B226C3 /* CTComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTComposeViewController.m; sourceTree = "<group>"; };
 		3D1206F918EBBACF00B226C3 /* CTDecryptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDecryptViewController.h; sourceTree = "<group>"; };
 		3D1206FA18EBBACF00B226C3 /* CTDecryptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDecryptViewController.m; sourceTree = "<group>"; };
+		3D1206FC18ECFB5000B226C3 /* CTCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTCrypto.h; sourceTree = "<group>"; };
+		3D1206FD18ECFB5000B226C3 /* CTCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCrypto.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,8 +163,8 @@
 				3D1206BA18E7B45600B226C3 /* Cryptext.xcdatamodeld */,
 				3D1206ED18EB0F6000B226C3 /* CTContact.h */,
 				3D1206EE18EB0F6000B226C3 /* CTContact.m */,
-				3D1206E118E8DA1100B226C3 /* SecKeyWrapper.h */,
-				3D1206E218E8DA1100B226C3 /* SecKeyWrapper.m */,
+				3D1206FC18ECFB5000B226C3 /* CTCrypto.h */,
+				3D1206FD18ECFB5000B226C3 /* CTCrypto.m */,
 				3D1206E418EA0C9600B226C3 /* NSData+RFC4648.h */,
 				3D1206E518EA0C9600B226C3 /* NSData+RFC4648.m */,
 				3D1206AC18E7B45600B226C3 /* Supporting Files */,
@@ -303,12 +303,12 @@
 				3D1206FB18EBBACF00B226C3 /* CTDecryptViewController.m in Sources */,
 				3D1206B218E7B45600B226C3 /* main.m in Sources */,
 				3D1206E618EA0C9600B226C3 /* NSData+RFC4648.m in Sources */,
+				3D1206FE18ECFB5000B226C3 /* CTCrypto.m in Sources */,
 				3D1206EC18EA636D00B226C3 /* CTCreateKeysViewController.m in Sources */,
 				3D1206F218EB13E800B226C3 /* CTAddContactViewController.m in Sources */,
 				3D1206BF18E7B45600B226C3 /* CTMasterViewController.m in Sources */,
 				3D1206BC18E7B45600B226C3 /* Cryptext.xcdatamodeld in Sources */,
 				3D1206E918EA607900B226C3 /* CTDeleteKeysViewController.m in Sources */,
-				3D1206E318E8DA1100B226C3 /* SecKeyWrapper.m in Sources */,
 				3D1206EF18EB0F6000B226C3 /* CTContact.m in Sources */,
 				3D1206B618E7B45600B226C3 /* CTAppDelegate.m in Sources */,
 			);

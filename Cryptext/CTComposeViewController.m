@@ -8,7 +8,6 @@
 
 #import "CTComposeViewController.h"
 #import "CTAppDelegate.h"
-#import "SecKeyWrapper.h"
 #import <MessageUI/MessageUI.h>
 
 @interface CTComposeViewController ()
@@ -80,7 +79,7 @@
 - (void)encryptOperation:(NSString*)message
 {
     @autoreleasepool {
-        SecKeyRef key = [[SecKeyWrapper sharedWrapper] addPeerPublicKey:self.contact.nickname keyBits:self.contact.key];
+        SecKeyRef key = [APP.crypto addPeerPublicKey:self.contact.nickname keyBits:self.contact.key];
         NSData* plaintext = [message dataUsingEncoding:NSUTF8StringEncoding];
         
         NSInteger blockSize = SecKeyGetBlockSize(key) - kPKCS1;
@@ -88,11 +87,11 @@
         
         for (NSInteger offset = 0; offset < plaintext.length; offset += blockSize) {
             NSData* block = [plaintext subdataWithRange:NSMakeRange(offset, MIN(blockSize, plaintext.length - offset))];
-            block = [[SecKeyWrapper sharedWrapper] wrapSymmetricKey:block keyRef:key];
+            block = [APP.crypto encryptBlock:block keyRef:key];
             [ciphertext appendData:block];
         }
         
-        [[SecKeyWrapper sharedWrapper] removePeerPublicKey:self.contact.nickname];
+        [APP.crypto removePeerPublicKey:self.contact.nickname];
         [self performSelectorOnMainThread:@selector(encryptionCompleted:) withObject:ciphertext waitUntilDone:NO];
     }
 }

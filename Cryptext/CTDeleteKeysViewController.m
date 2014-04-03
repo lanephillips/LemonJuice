@@ -8,7 +8,6 @@
 
 #import "CTDeleteKeysViewController.h"
 #import "CTAppDelegate.h"
-#import "SecKeyWrapper.h"
 
 @interface CTDeleteKeysViewController ()
 <UIAlertViewDelegate>
@@ -63,8 +62,8 @@
 - (void)deleteKeyPairOperation
 {
     @autoreleasepool {
-        [[SecKeyWrapper sharedWrapper] deleteAsymmetricKeys];
-        //        [[SecKeyWrapper sharedWrapper] generateSymmetricKey];
+        [APP.crypto deleteAsymmetricKeys];
+        //        [APP.crypto generateSymmetricKey];
         [self performSelectorOnMainThread:@selector(deleteKeyPairCompleted) withObject:nil waitUntilDone:NO];
     }
 }

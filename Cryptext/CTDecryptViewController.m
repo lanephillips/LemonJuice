@@ -7,7 +7,6 @@
 //
 
 #import "CTDecryptViewController.h"
-#import "SecKeyWrapper.h"
 #import "CTAppDelegate.h"
 
 @interface CTDecryptViewController ()
@@ -66,7 +65,7 @@
 - (void)decryptOperation:(NSString*)message
 {
     @autoreleasepool {
-        SecKeyRef key = [[SecKeyWrapper sharedWrapper] getPrivateKeyRef];
+        SecKeyRef key = [APP.crypto getPrivateKeyRef];
         if (!key) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.messageTxt.text = [NSString stringWithFormat:@"You don't have a private key to decrypt this message: %@", message];
@@ -82,7 +81,7 @@
         
         for (NSInteger offset = 0; offset < ciphertext.length; offset += blockSize) {
             NSData* block = [ciphertext subdataWithRange:NSMakeRange(offset, MIN(blockSize, ciphertext.length - offset))];
-            block = [[SecKeyWrapper sharedWrapper] unwrapSymmetricKey:block];
+            block = [APP.crypto decryptBlock:block];
             [plaintext appendData:block];
         }
         
