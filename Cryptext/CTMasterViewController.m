@@ -13,6 +13,8 @@
 #import "CTContact.h"
 #import "CTComposeViewController.h"
 
+#define MAKE_LOADING_SCREEN 0
+
 @interface CTPubkeyProvider : NSObject
 <UIActivityItemSource>
 
@@ -94,11 +96,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#if !MAKE_LOADING_SCREEN
     return 1 + [[self.fetchedResultsController sections] count];
+#else
+    return 2;
+#endif
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+#if !MAKE_LOADING_SCREEN
     if (section == 0) {
         NSString* pubKey = [APP.crypto base64EncodedPublicKey];
         return pubKey? 2 : 1;
@@ -106,6 +113,9 @@
     
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section - 1];
     return [sectionInfo numberOfObjects];
+#else
+    return 1;
+#endif
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -118,6 +128,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+#if !MAKE_LOADING_SCREEN
     if (indexPath.section == 0) {
         NSString* pubKey = [APP.crypto base64EncodedPublicKey];
         if (pubKey && indexPath.row == 0) {
@@ -139,6 +150,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell" forIndexPath:indexPath];
     indexPath = [self shiftIndexPath:indexPath bySections:-1];
     [self configureCell:cell atIndexPath:indexPath];
+#else
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LoadingCell" forIndexPath:indexPath];
+#endif
     
     return cell;
 }
