@@ -24,12 +24,13 @@
 
 @end
 
-@implementation CTMasterViewController
+@interface CTMasterViewController ()
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-}
+@property (nonatomic) NSArray* section2;
+
+@end
+
+@implementation CTMasterViewController
 
 - (void)viewDidLoad
 {
@@ -40,6 +41,8 @@
 //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
 //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGeneratingKeys)];
 //    self.navigationItem.rightBarButtonItem = addButton;
+    
+    self.section2 = @[@"HowToCell", @"CreditCell", @"FeedbackCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -97,9 +100,9 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #if !MAKE_LOADING_SCREEN
-    return 1 + [[self.fetchedResultsController sections] count];
+    return 2 + [[self.fetchedResultsController sections] count];
 #else
-    return 2;
+    return 3;
 #endif
 }
 
@@ -109,6 +112,10 @@
     if (section == 0) {
         NSString* pubKey = [APP.crypto base64EncodedPublicKey];
         return pubKey? 2 : 1;
+    }
+    
+    if (section == 1 + [[self.fetchedResultsController sections] count]) {
+        return self.section2.count;
     }
     
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section - 1];
@@ -123,6 +130,15 @@
     if (section == 0) {
         return @"Your Keys";
     }
+#if !MAKE_LOADING_SCREEN
+    if (section == 1 + [[self.fetchedResultsController sections] count]) {
+        return @"Etc.";
+    }
+#else
+    if (section == 2) {
+        return @"Etc.";
+    }
+#endif
     return @"Your Contacts";
 }
 
@@ -145,6 +161,11 @@
             cell.textLabel.text = @"Create Your Key";
             return cell;
         }
+    }
+
+    if (indexPath.section == 1 + [[self.fetchedResultsController sections] count]) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.section2[indexPath.row] forIndexPath:indexPath];
+        return cell;
     }
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell" forIndexPath:indexPath];
