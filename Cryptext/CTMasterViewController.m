@@ -181,7 +181,6 @@
                                                                              applicationActivities:nil];
             vc.completionHandler = ^(NSString *activityType, BOOL completed) {
                 NSLog(@"%@ %d", activityType, completed);
-                [self dismissViewControllerAnimated:YES completion:nil];
             };
             [self presentViewController:vc animated:YES completion:nil];
         } else if (pubKey && indexPath.row == 1) {

@@ -64,7 +64,7 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    if ([url.scheme isEqualToString:@"cryptext"]) {
+    if ([url.scheme isEqualToString:@"lmnj"]) {
         if ([@"pk" isEqualToString:url.host]) {
             NSString* keyStr = url.query;
             //NSLog(@"key %@", url.query);
