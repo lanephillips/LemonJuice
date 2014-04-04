@@ -45,7 +45,7 @@
     [APP.crypto encryptString:self.messageTxt.text
                 withPublicKey:self.contact.key
                    completion:^(NSString *base64EncodedCiphertext) {
-                       self.messageTxt.text = @"";
+                       self.messageTxt.text =base64EncodedCiphertext;
                        self.spinnerView.hidden = YES;
                        
                        self.cipherURL = [NSString stringWithFormat:@"lmnj://m?%@", base64EncodedCiphertext];
@@ -55,7 +55,10 @@
                            NSLog(@"%@ %d", activityType, completed);
                            [self.navigationController popViewControllerAnimated:YES];
                        };
-                       // TODO: check length to exclude twitter
+                       if (self.cipherURL.length > 140) {
+                           // exclude the microblogging sites if the message is too long
+                           vc.excludedActivityTypes = @[UIActivityTypePostToTwitter, UIActivityTypePostToTencentWeibo, UIActivityTypePostToWeibo];
+                       }
                        [self presentViewController:vc animated:YES completion:nil];
                    }];
 }
