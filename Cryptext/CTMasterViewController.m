@@ -13,10 +13,12 @@
 #import "CTContact.h"
 #import "CTComposeViewController.h"
 
-@interface CTMasterViewController ()
-<MFMessageComposeViewControllerDelegate>
+@interface CTPubkeyProvider : NSObject
+<UIActivityItemSource>
 
-@property (nonatomic) NSInteger dialogCloseCounter;
+@property (nonatomic) NSString* pubkey;
+
+- (instancetype)initWithPubkey:(NSString*)pubkey;
 
 @end
 
@@ -86,13 +88,6 @@
         CTContact *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
         vc.contact = object;
     }
-}
-
-#pragma mark - message UI
-
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table View
@@ -182,14 +177,13 @@
     if (indexPath.section == 0) {
         NSString* pubKey = [APP.crypto base64EncodedPublicKey];
         if (pubKey && indexPath.row == 0) { // share
-            if ([MFMessageComposeViewController canSendText])
-            {
-                MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
-                controller.body = [NSString stringWithFormat:@"I'm using CrypText. Please add my public key: cryptext://pk?%@", pubKey];
-                //        controller.recipients = [NSArray arrayWithObjects:@"1(234)567-8910", nil];
-                controller.messageComposeDelegate = self;
-                [self presentViewController:controller animated:YES completion:nil];
-            }
+            UIActivityViewController* vc = [[UIActivityViewController alloc] initWithActivityItems:@[[[CTPubkeyProvider alloc] initWithPubkey:pubKey]]
+                                                                             applicationActivities:nil];
+            vc.completionHandler = ^(NSString *activityType, BOOL completed) {
+                NSLog(@"%@ %d", activityType, completed);
+                [self dismissViewControllerAnimated:YES completion:nil];
+            };
+            [self presentViewController:vc animated:YES completion:nil];
         } else if (pubKey && indexPath.row == 1) {
             // use segue
         } else {
@@ -302,6 +296,33 @@
 - (NSIndexPath*)shiftIndexPath:(NSIndexPath*)ip bySections:(NSInteger)dSec
 {
     return [NSIndexPath indexPathForRow:ip.row inSection:ip.section + dSec];
+}
+
+@end
+
+@implementation CTPubkeyProvider
+
+- (instancetype)initWithPubkey:(NSString *)pubkey
+{
+    self = [super init];
+    if (self) {
+        self.pubkey = pubkey;
+    }
+    return self;
+}
+
+- (id)activityViewController:(UIActivityViewController *)activityViewController itemForActivityType:(NSString *)activityType
+{
+    if ([activityType isEqualToString:UIActivityTypePostToTwitter]) {
+        // shorter message
+        return [NSString stringWithFormat:@"My Lemon Juice key is lmnj://pk?%@", self.pubkey];
+    }
+    return [NSString stringWithFormat:@"I'm using Lemon Juice for encrypted messaging (https://itunes.apple.com/us/app/lemon-juice/id854695407?ls=1&mt=8). Please add my public key: lmnj://pk?%@", self.pubkey];
+}
+
+- (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController
+{
+    return @"";
 }
 
 @end
