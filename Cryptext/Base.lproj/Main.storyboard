@@ -154,6 +154,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="CIf-5g-H5Q" kind="push" identifier="howTo" id="KtX-ab-zMd"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CreditCell" textLabel="gCY-V0-btz" style="IBUITableViewCellStyleDefault" id="QfW-HW-A83">
                                 <rect key="frame" x="0.0" y="383" width="320" height="44"/>
@@ -171,6 +174,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="CIf-5g-H5Q" kind="push" identifier="whoMade" id="xxd-qc-wic"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FeedbackCell" textLabel="zLi-8Y-4LL" style="IBUITableViewCellStyleDefault" id="IRV-lj-QwH">
                                 <rect key="frame" x="0.0" y="427" width="320" height="44"/>
@@ -298,6 +304,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oJD-EM-tBf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="459" y="759"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="GB1-OJ-Al3">
+            <objects>
+                <viewController id="CIf-5g-H5Q" customClass="CTWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jXa-26-ib5"/>
+                        <viewControllerLayoutGuide type="bottom" id="vSp-kd-rkG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bkL-8l-7H9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97K-ap-4jz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zDV-TO-4mg"/>
+                    <connections>
+                        <outlet property="webView" destination="97K-ap-4jz" id="klV-xy-knm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vQm-ec-0pI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1591" y="-67"/>
         </scene>
         <!--Delete Keys View Controller-->
         <scene sceneID="89y-q4-iKi">
@@ -465,4 +500,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="xxd-qc-wic"/>
+    </inferredMetricsTieBreakers>
 </document>

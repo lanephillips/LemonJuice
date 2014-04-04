@@ -12,6 +12,7 @@
 #import "NSData+RFC4648.h"
 #import "CTContact.h"
 #import "CTComposeViewController.h"
+#import "CTWebViewController.h"
 
 #define MAKE_LOADING_SCREEN 0
 
@@ -92,6 +93,16 @@
         indexPath = [self shiftIndexPath:indexPath bySections:-1];
         CTContact *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
         vc.contact = object;
+    } else if ([segue.identifier isEqualToString:@"howTo"]) {
+        CTWebViewController* vc = segue.destinationViewController;
+        NSURL* url = [[NSBundle mainBundle] URLForResource:@"howto" withExtension:@"html"];
+        NSError* err = nil;
+        vc.html = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&err];
+    } else if ([segue.identifier isEqualToString:@"whoMade"]) {
+        CTWebViewController* vc = segue.destinationViewController;
+        NSURL* url = [[NSBundle mainBundle] URLForResource:@"credits" withExtension:@"html"];
+        NSError* err = nil;
+        vc.html = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&err];
     }
 }
 

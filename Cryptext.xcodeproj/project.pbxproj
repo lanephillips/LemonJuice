@@ -33,6 +33,9 @@
 		3D1206FB18EBBACF00B226C3 /* CTDecryptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206FA18EBBACF00B226C3 /* CTDecryptViewController.m */; };
 		3D1206FE18ECFB5000B226C3 /* CTCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1206FD18ECFB5000B226C3 /* CTCrypto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D12070118ED046200B226C3 /* CTNiceCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D12070018ED046200B226C3 /* CTNiceCrypto.m */; };
+		3D12070918EEFDF400B226C3 /* CTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D12070818EEFDF400B226C3 /* CTWebViewController.m */; };
+		3D12070C18EF019300B226C3 /* howto.html in Resources */ = {isa = PBXBuildFile; fileRef = 3D12070B18EF019300B226C3 /* howto.html */; };
+		3D12070E18EF01A600B226C3 /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 3D12070D18EF01A600B226C3 /* credits.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3D1206A018E7B45600B226C3 /* Cryptext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cryptext.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D1206A018E7B45600B226C3 /* Cryptext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Cryptext.app; path = "Lemon Juice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D1206A318E7B45600B226C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3D1206A518E7B45600B226C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3D1206A718E7B45600B226C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -85,6 +88,10 @@
 		3D1206FD18ECFB5000B226C3 /* CTCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTCrypto.m; sourceTree = "<group>"; };
 		3D1206FF18ED046200B226C3 /* CTNiceCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTNiceCrypto.h; sourceTree = "<group>"; };
 		3D12070018ED046200B226C3 /* CTNiceCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTNiceCrypto.m; sourceTree = "<group>"; };
+		3D12070718EEFDF400B226C3 /* CTWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTWebViewController.h; sourceTree = "<group>"; };
+		3D12070818EEFDF400B226C3 /* CTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTWebViewController.m; sourceTree = "<group>"; };
+		3D12070B18EF019300B226C3 /* howto.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = howto.html; sourceTree = "<group>"; };
+		3D12070D18EF01A600B226C3 /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = credits.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +169,8 @@
 				3D1206E818EA607900B226C3 /* CTDeleteKeysViewController.m */,
 				3D1206EA18EA636D00B226C3 /* CTCreateKeysViewController.h */,
 				3D1206EB18EA636D00B226C3 /* CTCreateKeysViewController.m */,
+				3D12070718EEFDF400B226C3 /* CTWebViewController.h */,
+				3D12070818EEFDF400B226C3 /* CTWebViewController.m */,
 				3D1206C318E7B45600B226C3 /* Images.xcassets */,
 				3D1206BA18E7B45600B226C3 /* Cryptext.xcdatamodeld */,
 				3D1206ED18EB0F6000B226C3 /* CTContact.h */,
@@ -172,6 +181,8 @@
 				3D12070018ED046200B226C3 /* CTNiceCrypto.m */,
 				3D1206E418EA0C9600B226C3 /* NSData+RFC4648.h */,
 				3D1206E518EA0C9600B226C3 /* NSData+RFC4648.m */,
+				3D12070B18EF019300B226C3 /* howto.html */,
+				3D12070D18EF01A600B226C3 /* credits.html */,
 				3D1206AC18E7B45600B226C3 /* Supporting Files */,
 			);
 			path = Cryptext;
@@ -283,7 +294,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D12070E18EF01A600B226C3 /* credits.html in Resources */,
 				3D1206C418E7B45600B226C3 /* Images.xcassets in Resources */,
+				3D12070C18EF019300B226C3 /* howto.html in Resources */,
 				3D1206B018E7B45600B226C3 /* InfoPlist.strings in Resources */,
 				3D1206B918E7B45600B226C3 /* Main.storyboard in Resources */,
 			);
@@ -304,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D12070918EEFDF400B226C3 /* CTWebViewController.m in Sources */,
 				3D1206F518EB276D00B226C3 /* CTComposeViewController.m in Sources */,
 				3D1206FB18EBBACF00B226C3 /* CTDecryptViewController.m in Sources */,
 				3D1206B218E7B45600B226C3 /* main.m in Sources */,
