@@ -209,9 +209,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3D12069F18E7B45600B226C3 /* Cryptext */ = {
+		3D12069F18E7B45600B226C3 /* Lemon Juice */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3D1206DB18E7B45600B226C3 /* Build configuration list for PBXNativeTarget "Cryptext" */;
+			buildConfigurationList = 3D1206DB18E7B45600B226C3 /* Build configuration list for PBXNativeTarget "Lemon Juice" */;
 			buildPhases = (
 				3D12069C18E7B45600B226C3 /* Sources */,
 				3D12069D18E7B45600B226C3 /* Frameworks */,
@@ -221,7 +221,7 @@
 			);
 			dependencies = (
 			);
-			name = Cryptext;
+			name = "Lemon Juice";
 			productName = Cryptext;
 			productReference = 3D1206A018E7B45600B226C3 /* Cryptext.app */;
 			productType = "com.apple.product-type.application";
@@ -272,7 +272,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3D12069F18E7B45600B226C3 /* Cryptext */,
+				3D12069F18E7B45600B226C3 /* Lemon Juice */,
 				3D1206C818E7B45600B226C3 /* CryptextTests */,
 			);
 		};
@@ -333,7 +333,7 @@
 /* Begin PBXTargetDependency section */
 		3D1206D018E7B45600B226C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3D12069F18E7B45600B226C3 /* Cryptext */;
+			target = 3D12069F18E7B45600B226C3 /* Lemon Juice */;
 			targetProxy = 3D1206CF18E7B45600B226C3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -514,7 +514,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3D1206DB18E7B45600B226C3 /* Build configuration list for PBXNativeTarget "Cryptext" */ = {
+		3D1206DB18E7B45600B226C3 /* Build configuration list for PBXNativeTarget "Lemon Juice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3D1206DC18E7B45600B226C3 /* Debug */,
