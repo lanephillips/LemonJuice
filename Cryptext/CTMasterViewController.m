@@ -97,11 +97,13 @@
         CTWebViewController* vc = segue.destinationViewController;
         NSURL* url = [[NSBundle mainBundle] URLForResource:@"howto" withExtension:@"html"];
         NSError* err = nil;
+        vc.title = @"How To";
         vc.html = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&err];
     } else if ([segue.identifier isEqualToString:@"whoMade"]) {
         CTWebViewController* vc = segue.destinationViewController;
         NSURL* url = [[NSBundle mainBundle] URLForResource:@"credits" withExtension:@"html"];
         NSError* err = nil;
+        vc.title = @"Credits";
         vc.html = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&err];
     }
 }
@@ -130,7 +132,7 @@
     }
     
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section - 1];
-    return [sectionInfo numberOfObjects];
+    return MAX(1, [sectionInfo numberOfObjects]);
 #else
     return 1;
 #endif
@@ -179,14 +181,20 @@
         return cell;
     }
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell" forIndexPath:indexPath];
     indexPath = [self shiftIndexPath:indexPath bySections:-1];
-    [self configureCell:cell atIndexPath:indexPath];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][indexPath.section];
+    if (indexPath.row >= [sectionInfo numberOfObjects]) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoContactsCell" forIndexPath:indexPath];
+        return cell;
+    } else {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell" forIndexPath:indexPath];
+        [self configureCell:cell atIndexPath:indexPath];
+        return cell;
+    }
 #else
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LoadingCell" forIndexPath:indexPath];
-#endif
-    
     return cell;
+#endif
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

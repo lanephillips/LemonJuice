@@ -9,6 +9,7 @@
 #import "CTWebViewController.h"
 
 @interface CTWebViewController ()
+<UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
@@ -21,6 +22,15 @@
     [super viewWillAppear:animated];
     
     [self.webView loadHTMLString:self.html baseURL:nil];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        [[UIApplication sharedApplication] openURL:request.URL];
+        return NO;
+    }
+    return YES;
 }
 
 @end
