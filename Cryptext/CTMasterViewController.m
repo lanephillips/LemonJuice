@@ -157,6 +157,7 @@
     return @"Your Contacts";
 }
 
+#if !MAKE_LOADING_SCREEN
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (section == 1 && self.fetchedResultsController.sections.count == 1) {
@@ -183,6 +184,7 @@
     }
     return nil;
 }
+#endif
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
