@@ -133,7 +133,7 @@
     }
     
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section - 1];
-    return MAX(1, [sectionInfo numberOfObjects]);
+    return [sectionInfo numberOfObjects];
 #else
     return 1;
 #endif
@@ -154,6 +154,33 @@
     }
 #endif
     return @"Your Contacts";
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section == 1 && self.fetchedResultsController.sections.count == 1) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = self.fetchedResultsController.sections.firstObject;
+        if ([sectionInfo objects].count == 0) {
+            return 22;
+        }
+    }
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section == 1 && self.fetchedResultsController.sections.count == 1) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = self.fetchedResultsController.sections.firstObject;
+        if ([sectionInfo objects].count == 0) {
+            UILabel* lbl = [[UILabel alloc] initWithFrame:CGRectZero];
+            lbl.font = [UIFont italicSystemFontOfSize:15];
+            lbl.textAlignment = NSTextAlignmentCenter;
+            lbl.text = @"You have not added any contacts.";
+            lbl.textColor = [UIColor lightGrayColor];
+            return lbl;
+        }
+    }
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -183,15 +210,9 @@
     }
 
     indexPath = [self shiftIndexPath:indexPath bySections:-1];
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][indexPath.section];
-    if (indexPath.row >= [sectionInfo numberOfObjects]) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoContactsCell" forIndexPath:indexPath];
-        return cell;
-    } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell" forIndexPath:indexPath];
-        [self configureCell:cell atIndexPath:indexPath];
-        return cell;
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell" forIndexPath:indexPath];
+    [self configureCell:cell atIndexPath:indexPath];
+    return cell;
 #else
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LoadingCell" forIndexPath:indexPath];
     return cell;
@@ -201,7 +222,7 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return indexPath.section > 0;
+    return indexPath.section > 0 && indexPath.section < 1 + [[self.fetchedResultsController sections] count];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -229,6 +250,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.section == 0) {
         NSString* pubKey = [APP.crypto base64EncodedPublicKey];
         if (pubKey && indexPath.row == 0) { // share

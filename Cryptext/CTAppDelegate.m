@@ -73,31 +73,22 @@
             if (key) {
                 BOOL isNew = NO;
                 CTContact* c = [CTContact contactForKey:key inContext:self.managedObjectContext create:YES isNew:&isNew];
-                if (isNew) {
-                    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-                    CTAddContactViewController* addVC = [navigationController.storyboard instantiateViewControllerWithIdentifier:@"addKey"];
-                    addVC.contact = c;
-                    addVC.cancelHandler = ^() {
+                
+                UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+                CTAddContactViewController* addVC = [navigationController.storyboard instantiateViewControllerWithIdentifier:@"addKey"];
+                addVC.title = isNew ? @"Add Contact" : @"Edit Contact";
+                addVC.contact = c;
+                addVC.cancelHandler = ^() {
+                    if (isNew) {
                         [self.managedObjectContext deleteObject:c];
-                    };
-                    addVC.saveHandler = ^() {
-                        [self saveContext];
-                    };
-                    [navigationController pushViewController:addVC animated:YES];
-                } else {
-                    [[[UIAlertView alloc] initWithTitle:@"Duplicate Contact"
-                      // TODO: but maybe they want to edit the nickname?
-                                                message:@"You have already added this contact's public key."
-                                               delegate:nil
-                                      cancelButtonTitle:@"Close"
-                                      otherButtonTitles:nil]
-                     show];
-                }
-            } else {
-                NSLog(@"couldn't parse key %@", keyStr);
-                // TODO: tell user?
+                    }
+                };
+                addVC.saveHandler = ^() {
+                    [self saveContext];
+                };
+                [navigationController pushViewController:addVC animated:YES];
+                return YES;
             }
-            return YES;
         }
         else if ([@"m" isEqualToString:url.host]) {
             //NSLog(@"message %@", url.query);
@@ -108,7 +99,6 @@
             return YES;
         }
     }
-    NSLog(@"bad url %@", url);
     return NO;
 }
 
