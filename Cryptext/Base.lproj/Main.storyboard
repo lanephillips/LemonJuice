@@ -317,13 +317,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97K-ap-4jz">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97K-ap-4jz">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="97K-ap-4jz" secondAttribute="trailing" id="FUl-UR-P6g"/>
+                            <constraint firstItem="97K-ap-4jz" firstAttribute="leading" secondItem="bkL-8l-7H9" secondAttribute="leading" id="XoC-OR-EiS"/>
+                            <constraint firstItem="vSp-kd-rkG" firstAttribute="top" secondItem="97K-ap-4jz" secondAttribute="bottom" id="spU-Ma-eUv"/>
+                            <constraint firstItem="97K-ap-4jz" firstAttribute="top" secondItem="bkL-8l-7H9" secondAttribute="top" id="td8-ES-IaE"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zDV-TO-4mg"/>
                     <connections>

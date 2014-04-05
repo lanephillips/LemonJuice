@@ -4,24 +4,54 @@
     <meta charset="utf-8">
     <title>How to Use Lemon Juice</title>
   </head>
-  <body>
+  <body style="font-family:Avenir-Roman">
     <h1>How to Use Lemon Juice</h1>
+    
+    <h2>How It Works</h2>
+    
+    <p>Lemon Juice uses public key cryptography to allow you to send encrypted messages over untrusted channels.
+      Unlike other secure messaging apps, Lemon Juice does not communicate with a central server. You can send encrypted
+      messages over SMS, email, or you can paste them into a document.
 
-    <h2>Creating and Sharing Your Public Key</h2>
+      Lemon Juice cannot read your text messages (no iOS app can, except for iMessage), but you can easily open
+      an encrypted message in Lemon Juice by tapping on the "lmnj" URL.
 
-    <p></p>
 
-    <h2>Deleting Your Public Key</h2>
+    <h2>Managing Your Keys</h2>
 
-    <p></p>
+    <p>If you do not have a key pair, tap on "Create Your Key" and one will be generated. You can now tap on "Share Your Public Key" to encode
+      your public key in a URL that anyone with the Lemon Juice app can open. Your friends can use this key to send you messages that only you can decrypt.Your private key is stored securely in the iOS keychain and is never revealed, not even to you.</p>
+
+    <p>You may delete your key pair, but this means that you will not be able decrypt messages that were encrypted with the public key.</p>
+
+
+    <h2>Adding a Contact</h2>
+
+    <p>If a Lemon Juice user sends you a URL to his or her public key, simply tap on the URL to open Lemon Juice and add the public key to your list of contacts. You can now send encrypted messages for his or her eyes only. Tap the "Edit" button to rename or delete contacts.</p>
+
 
     <h2>Sending an Encrypted Message</h2>
 
-    <p></p>
+    <p>To send an encrypted message, simply tap on one of your contacts in the menu. A window opens where you can type a message. When you're done, tap "Send", and the message will be encrypted and then encoded as a "lmnj" URL. You can send this message as a text, email, or some other way.
+      Only your contact can decrypt it now.</p>
+
+    <p>As soon as the message is encrypted, Lemon Juice forgets the original unencrypted message. No history of messages is stored. If you leave the app without encrypting the message, it will also be forgotten.</p>
+
+    <p>Keep in mind that even though Lemon Juice keeps no record of the messages it sends or receives, the recipient of
+      your message can still save a copy outside of the app.</p>
+
+
+    <h2>Receiving an Encrypted Message</h2>
+
+    <p>If someone sends you an encrypted message, just tap on the "lmnj" URL to view it in Lemon Juice. You can only decrypt messages that were encrypted
+      using your public key.</p>
+
+    <p>When you leave the app or close the decrypted message screen, the decrypted message will be forgotten, and you can't view it again without decrypting it. No decrypted messages are stored.</p>
+
 
     <h2>Let's Hear From You</h2>
 
-    <p>Please <a href="mailto:lemon-juice-feedback@milkllc.com">tell us</a> how we can make Lemon Juice a better app. If you want to support continued development of Lemon Juice, feel free to toss some bitcoins to our donation address: <b>1LMNj1NiNANGEkefwy98jSnNm8cenHW8qM</b></p>
+    <p>Please <a href="mailto:lemon-juice-feedback@milkllc.com">tell us</a> how we can make Lemon Juice a better app. If you want to support continued development of Lemon Juice, feel free to toss some bitcoins to our donation address: <b style="font-size:80%">1LMNj1NiNANGEkefwy98jSnNm8cenHW8qM</b></p>
 
     <p>&copy; 2014 Milk LLC</p>
   </body>
