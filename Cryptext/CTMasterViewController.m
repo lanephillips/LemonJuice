@@ -26,6 +26,7 @@
 @end
 
 @interface CTMasterViewController ()
+<MFMailComposeViewControllerDelegate>
 
 @property (nonatomic) NSArray* section2;
 
@@ -43,7 +44,7 @@
 //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGeneratingKeys)];
 //    self.navigationItem.rightBarButtonItem = addButton;
     
-    self.section2 = @[@"HowToCell", @"CreditCell", @"FeedbackCell"];
+    self.section2 = @[@"HowToCell", @"CreditCell", @"FeedbackCell", @"OtherAppsCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -242,9 +243,45 @@
         } else {
             // use segue
         }
+    }
+    else if (indexPath.section == 1 + [[self.fetchedResultsController sections] count]) {
+        if (indexPath.row == 2) {
+            if ([MFMailComposeViewController canSendMail]) {
+                MFMailComposeViewController* vc = [[MFMailComposeViewController alloc] init];
+                vc.mailComposeDelegate = self;
+                [vc setToRecipients:[NSArray arrayWithObject:@"lemon-juice-feedback@milkllc.com"]];
+                [vc setSubject:@"Lemon Juice Feedback"];
+                
+                NSMutableString* s = [[NSMutableString alloc] init];
+                [s appendString:@"\n\n"];
+                [s appendFormat:@"Device: %@, iOS Version: %@\n", [UIDevice currentDevice].model, [UIDevice currentDevice].systemVersion];
+                NSDictionary* info = [[NSBundle mainBundle] infoDictionary];
+                [s appendFormat:@"App Version: %@, Build: %@", [info objectForKey:@"CFBundleShortVersionString"], [info objectForKey:@"CFBundleVersion"]];
+                [vc setMessageBody:s isHTML:NO];
+                
+                [self presentViewController:vc animated:YES completion:NULL];
+            }
+            else {
+                [[[UIAlertView alloc] initWithTitle:@"Send Feedback"
+                                            message:@"This device is not able to send mail. This usually means that you have not yet configured your mail app with an email account."
+                                           delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil] show];
+            }
+        }
+        else if (indexPath.row == 3) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://appstore.com/MilkLLC"]];
+        }
     } else {
         // use segue
     }
+}
+
+#pragma mark - mail
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Fetched results controller
