@@ -13,6 +13,7 @@
 #import "CTContact.h"
 #import "CTComposeViewController.h"
 #import "CTWebViewController.h"
+#import "CTAddContactViewController.h"
 
 #define MAKE_LOADING_SCREEN 0
 
@@ -211,6 +212,7 @@
 
     indexPath = [self shiftIndexPath:indexPath bySections:-1];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell" forIndexPath:indexPath];
+    cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 #else
@@ -298,6 +300,23 @@
     } else {
         // use segue
     }
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    CTAddContactViewController* addVC = [self.storyboard instantiateViewControllerWithIdentifier:@"addKey"];
+    
+    indexPath = [self shiftIndexPath:indexPath bySections:-1];
+    CTContact *c = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+    addVC.title = @"Edit Contact";
+    addVC.contact = c;
+    addVC.cancelHandler = ^() {
+    };
+    addVC.saveHandler = ^() {
+        [APP saveContext];
+    };
+    [self.navigationController pushViewController:addVC animated:YES];
 }
 
 #pragma mark - mail
