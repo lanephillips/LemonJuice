@@ -10,6 +10,13 @@
 #import "CTAppDelegate.h"
 #import <MessageUI/MessageUI.h>
 
+@interface CTMessageProvider : NSObject
+<UIActivityItemSource>
+
+@property (nonatomic) NSString* message;
+
+@end
+
 @interface CTComposeViewController ()
 <UITextViewDelegate>
 
@@ -24,14 +31,18 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.messageTxt.text = @"";
+    if (self.isMovingToParentViewController) {
+        self.messageTxt.text = @"";
+    }
     self.title = [NSString stringWithFormat:@"Message to %@", self.contact.nickname];
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+    self.navigationItem.rightBarButtonItem.enabled = self.messageTxt.text.length > 0;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    self.messageTxt.text = @"";
+    if (self.isMovingFromParentViewController) {
+        self.messageTxt.text = @"";
+    }
     [super viewWillDisappear:animated];
 }
 
@@ -47,15 +58,19 @@
     [APP.crypto encryptString:self.messageTxt.text
                 withPublicKey:self.contact.key
                    completion:^(NSString *base64EncodedCiphertext) {
-                       self.messageTxt.text =base64EncodedCiphertext;
                        self.spinnerView.hidden = YES;
                        
                        self.cipherURL = [NSString stringWithFormat:@"lmnj://m?%@", base64EncodedCiphertext];
-                       UIActivityViewController* vc = [[UIActivityViewController alloc] initWithActivityItems:@[self.cipherURL]
+                       CTMessageProvider* provider = [[CTMessageProvider alloc] init];
+                       provider.message = self.cipherURL;
+                       
+                       UIActivityViewController* vc = [[UIActivityViewController alloc] initWithActivityItems:@[provider]
                                                                                         applicationActivities:nil];
                        vc.completionHandler = ^(NSString *activityType, BOOL completed) {
-                           NSLog(@"%@ %d", activityType, completed);
-                           [self.navigationController popViewControllerAnimated:YES];
+                           if (completed) {
+                               self.messageTxt.text = @"";
+                               [self.navigationController popViewControllerAnimated:YES];
+                           }
                        };
                        if (self.cipherURL.length > 140) {
                            // exclude the microblogging sites if the message is too long
@@ -77,3 +92,23 @@
 }
 
 @end
+
+@implementation CTMessageProvider
+
+- (id)activityViewController:(UIActivityViewController *)activityViewController itemForActivityType:(NSString *)activityType
+{
+    return self.message;
+}
+
+- (NSString *)activityViewController:(UIActivityViewController *)activityViewController subjectForActivityType:(NSString *)activityType
+{
+    return @"Lemon Juice Encrypted Message";
+}
+
+- (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController
+{
+    return @"";
+}
+
+@end
+
