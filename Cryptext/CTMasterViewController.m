@@ -201,7 +201,6 @@
             return cell;
         } else {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CreateCell" forIndexPath:indexPath];
-            // TODO: use storyboard segues
             cell.textLabel.text = @"Create Your Key";
             return cell;
         }
@@ -259,10 +258,16 @@
     if (indexPath.section == 0) {
         NSString* pubKey = [APP.crypto base64EncodedPublicKey];
         if (pubKey && indexPath.row == 0) { // share
-            UIActivityViewController* vc = [[UIActivityViewController alloc] initWithActivityItems:@[[[CTPubkeyProvider alloc] initWithPubkey:pubKey]]
+            CTPubkeyProvider* provider = [[CTPubkeyProvider alloc] initWithPubkey:pubKey];
+            UIActivityViewController* vc = [[UIActivityViewController alloc] initWithActivityItems:@[provider]
                                                                              applicationActivities:nil];
+            
+            NSString* twitterString = [provider activityViewController:vc itemForActivityType:UIActivityTypePostToTwitter];
+            if (twitterString.length > 140) {
+                vc.excludedActivityTypes = @[UIActivityTypePostToTwitter, UIActivityTypePostToWeibo, UIActivityTypePostToTencentWeibo];
+            }
+            
             vc.completionHandler = ^(NSString *activityType, BOOL completed) {
-                NSLog(@"%@ %d", activityType, completed);
             };
             [self presentViewController:vc animated:YES completion:nil];
         } else if (pubKey && indexPath.row == 1) {
@@ -451,7 +456,12 @@
         // shorter message
         return [NSString stringWithFormat:@"My Lemon Juice key is lmnj://pk?%@", self.pubkey];
     }
-    return [NSString stringWithFormat:@"I'm using Lemon Juice for encrypted messaging (https://itunes.apple.com/us/app/lemon-juice/id854695407?ls=1&mt=8). Please add my public key: lmnj://pk?%@", self.pubkey];
+    return [NSString stringWithFormat:@"I'm using Lemon Juice for encrypted messaging (https://itunes.apple.com/us/app/lemon-juice/id854695407?ls=1&mt=8).\n\nPlease add my public key: lmnj://pk?%@", self.pubkey];
+}
+
+- (NSString *)activityViewController:(UIActivityViewController *)activityViewController subjectForActivityType:(NSString *)activityType
+{
+    return @"Please add my public key.";
 }
 
 - (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController
