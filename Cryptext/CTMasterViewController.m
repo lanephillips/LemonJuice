@@ -212,9 +212,9 @@
         return cell;
     }
 
-    indexPath = [self shiftIndexPath:indexPath bySections:-1];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell" forIndexPath:indexPath];
     cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    indexPath = [self shiftIndexPath:indexPath bySections:-1];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 #else
