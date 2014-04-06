@@ -28,7 +28,6 @@
 //
 
 #import "CTAddContactViewController.h"
-#import "NSData+RFC4648.h"
 
 @interface CTAddContactViewController ()
 
@@ -49,7 +48,6 @@
 {
     [super viewWillAppear:animated];
     self.nickTxt.text = self.contact.nickname;
-//    self.keyTxt.text = self.contact.key.rfc4648Base64EncodedString;
     self.keyTxt.text = [self.contact.key base64EncodedStringWithOptions:0];
 }
 
@@ -65,7 +63,6 @@
     
     if (self.isViewLoaded) {
         self.nickTxt.text = contact.nickname;
-        //    self.keyTxt.text = self.contact.key.rfc4648Base64EncodedString;
         self.keyTxt.text = [self.contact.key base64EncodedStringWithOptions:0];
     }
 }

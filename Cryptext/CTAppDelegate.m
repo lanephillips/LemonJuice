@@ -29,7 +29,6 @@
 
 #import "CTAppDelegate.h"
 #import "CTMasterViewController.h"
-#import "NSData+RFC4648.h"
 #import "CTAddContactViewController.h"
 #import "CTDecryptViewController.h"
 
@@ -88,8 +87,6 @@
     if ([url.scheme isEqualToString:@"lmnj"]) {
         if ([@"pk" isEqualToString:url.host]) {
             NSString* keyStr = url.query;
-            //NSLog(@"key %@", url.query);
-//            NSData* key = [NSData dataWithRFC4648Base64EncodedString:keyStr];
             NSData* key = [[NSData alloc] initWithBase64EncodedString:keyStr options:0];
             if (key) {
                 BOOL isNew = NO;
@@ -112,7 +109,6 @@
             }
         }
         else if ([@"m" isEqualToString:url.host]) {
-            //NSLog(@"message %@", url.query);
             UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
             CTDecryptViewController* msgVC = [navigationController.storyboard instantiateViewControllerWithIdentifier:@"decryptMessage"];
             msgVC.message = url.query;

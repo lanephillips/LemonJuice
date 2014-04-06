@@ -30,7 +30,6 @@
 #import "CTMasterViewController.h"
 #import "CTAppDelegate.h"
 #import <MessageUI/MessageUI.h>
-#import "NSData+RFC4648.h"
 #import "CTContact.h"
 #import "CTComposeViewController.h"
 #import "CTWebViewController.h"
@@ -62,10 +61,6 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGeneratingKeys)];
-//    self.navigationItem.rightBarButtonItem = addButton;
-    
     self.section2 = @[@"HowToCell", @"CreditCell", @"FeedbackCell", @"OtherAppsCell"];
 }
 
@@ -80,26 +75,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//- (void)insertNewObject:(id)sender
-//{
-//    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-//    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-//    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-//    
-//    // If appropriate, configure the new managed object.
-//    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-//    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-//    
-//    // Save the context.
-//    NSError *error = nil;
-//    if (![context save:&error]) {
-//         // Replace this implementation with code to handle the error appropriately.
-//         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//        abort();
-//    }
-//}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -214,7 +189,6 @@
         NSString* pubKey = [APP.crypto base64EncodedPublicKey];
         if (pubKey && indexPath.row == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShareCell" forIndexPath:indexPath];
-//            cell.detailTextLabel.text = pubKey.rfc4648Base64EncodedString;
             cell.detailTextLabel.text = pubKey;
             return cell;
         } else if (pubKey && indexPath.row == 1) {
