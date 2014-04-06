@@ -48,7 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3D1206A018E7B45600B226C3 /* Cryptext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Cryptext.app; path = "Lemon Juice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D1206A018E7B45600B226C3 /* Lemon Juice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lemon Juice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D1206A318E7B45600B226C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3D1206A518E7B45600B226C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3D1206A718E7B45600B226C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -130,7 +130,7 @@
 		3D1206A118E7B45600B226C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3D1206A018E7B45600B226C3 /* Cryptext.app */,
+				3D1206A018E7B45600B226C3 /* Lemon Juice.app */,
 				3D1206C918E7B45600B226C3 /* CryptextTests.xctest */,
 			);
 			name = Products;
@@ -229,7 +229,7 @@
 			);
 			name = "Lemon Juice";
 			productName = Cryptext;
-			productReference = 3D1206A018E7B45600B226C3 /* Cryptext.app */;
+			productReference = 3D1206A018E7B45600B226C3 /* Lemon Juice.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3D1206C818E7B45600B226C3 /* CryptextTests */ = {

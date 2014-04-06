@@ -169,7 +169,7 @@ static const uint8_t privateKeyIdentifier[]		= kPrivateKeyTag;
 	publicKeyRef = NULL;
 	privateKeyRef = NULL;
 	
-	LOGGING_FACILITY1( keySize == 512 || keySize == 1024 || keySize == 2048, @"%d is an invalid and unsupported key size.", keySize );
+	LOGGING_FACILITY1( keySize == 512 || keySize == 1024 || keySize == 2048, @"%lu is an invalid and unsupported key size.", (unsigned long)keySize );
 	
 	// First delete current keys.
 	[self deleteAsymmetricKeys];
