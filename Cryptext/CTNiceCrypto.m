@@ -32,10 +32,10 @@
     return self;
 }
 
-- (void)generateKeyPair:(void (^)())completion
+- (void)generateKeyPairOfSize:(NSInteger)size completion:(void (^)())completion
 {
     [self.cryptoQueue addOperationWithBlock:^{
-        [self.crypto generateKeyPair:kAsymmetricSecKeyPairModulusSize];
+        [self.crypto generateKeyPair:size];
         dispatch_async(dispatch_get_main_queue(), completion);
     }];
 }

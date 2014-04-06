@@ -11,7 +11,7 @@
 // friendlier interface than CTCrypto
 @interface CTNiceCrypto : NSObject
 
-- (void)generateKeyPair:(void(^)())completion;
+- (void)generateKeyPairOfSize:(NSInteger)size completion:(void(^)())completion;
 - (void)deleteKeyPair:(void(^)())completion;
 
 - (NSString*)base64EncodedPublicKey;
