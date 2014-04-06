@@ -11,6 +11,7 @@
 #import <MessageUI/MessageUI.h>
 
 @interface CTComposeViewController ()
+<UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *messageTxt;
 @property (weak, nonatomic) IBOutlet UIView *spinnerView;
@@ -25,6 +26,7 @@
     [super viewWillAppear:animated];
     self.messageTxt.text = @"";
     self.title = [NSString stringWithFormat:@"Message to %@", self.contact.nickname];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -67,6 +69,11 @@
 {
     _contact = contact;
     self.title = [NSString stringWithFormat:@"Message to %@", contact.nickname];
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    self.navigationItem.rightBarButtonItem.enabled = textView.text.length > 0;
 }
 
 @end

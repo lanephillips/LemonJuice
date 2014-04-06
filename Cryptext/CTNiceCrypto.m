@@ -55,6 +55,11 @@
 
 - (void)encryptString:(NSString *)plainText withPublicKey:(NSData *)key completion:(void (^)(NSString *))completion
 {
+    if (plainText.length == 0) {
+        // shouldn't get here, but let's not send a bad URL
+        plainText = @"This message was intentionally left blank.";
+    }
+    
     [self.cryptoQueue addOperationWithBlock:^{
         NSString* keyNick = [key base64EncodedStringWithOptions:0];
         SecKeyRef keyref = [self.crypto addPeerPublicKey:keyNick keyBits:key];
