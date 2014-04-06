@@ -456,6 +456,9 @@
         // shorter message
         return [NSString stringWithFormat:@"My Lemon Juice key is lmnj://pk?%@", self.pubkey];
     }
+    if ([activityType isEqualToString:UIActivityTypeCopyToPasteboard]) {
+        return [NSString stringWithFormat:@"lmnj://pk?%@", self.pubkey];
+    }
     return [NSString stringWithFormat:@"I'm using Lemon Juice for encrypted messaging (https://itunes.apple.com/us/app/lemon-juice/id854695407?ls=1&mt=8).\n\nPlease add my public key: lmnj://pk?%@", self.pubkey];
 }
 
