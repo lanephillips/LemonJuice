@@ -38,6 +38,13 @@
     self.navigationItem.rightBarButtonItem.enabled = self.messageTxt.text.length > 0;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.messageTxt becomeFirstResponder];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     if (self.isMovingFromParentViewController) {
