@@ -160,8 +160,14 @@ static const uint8_t privateKeyIdentifier[]		= kPrivateKeyTag;
 	
 	[queryPrivateKey release];
 	[queryPublicKey release];
-	if (publicKeyRef) CFRelease(publicKeyRef);
-	if (privateKeyRef) CFRelease(privateKeyRef);
+	if (publicKeyRef) {
+        CFRelease(publicKeyRef);
+        publicKeyRef = NULL;
+    }
+	if (privateKeyRef) {
+        CFRelease(privateKeyRef);
+        privateKeyRef = NULL;
+    }
 }
 
 - (void)generateKeyPair:(NSUInteger)keySize {
