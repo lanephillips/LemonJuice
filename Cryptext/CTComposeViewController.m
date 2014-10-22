@@ -94,7 +94,7 @@
                        
                        UIActivityViewController* vc = [[UIActivityViewController alloc] initWithActivityItems:@[provider]
                                                                                         applicationActivities:nil];
-                       vc.completionHandler = ^(NSString *activityType, BOOL completed) {
+                       vc.completionWithItemsHandler = ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
                            if (completed) {
                                self.messageTxt.text = @"";
                                [self.navigationController popViewControllerAnimated:YES];

@@ -262,7 +262,7 @@
                 vc.excludedActivityTypes = @[UIActivityTypePostToTwitter, UIActivityTypePostToWeibo, UIActivityTypePostToTencentWeibo];
             }
             
-            vc.completionHandler = ^(NSString *activityType, BOOL completed) {
+            vc.completionWithItemsHandler = ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
             };
             [self presentViewController:vc animated:YES completion:nil];
         } else if (pubKey && indexPath.row == 1) {
@@ -382,6 +382,9 @@
             
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex + 1] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+
+        default:
             break;
     }
 }
