@@ -31,6 +31,7 @@
 #import "CTMasterViewController.h"
 #import "CTAddContactViewController.h"
 #import "CTDecryptViewController.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation CTAppDelegate
 
@@ -41,6 +42,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [Crashlytics startWithAPIKey:@"0fcac72f0c942dac364ab6d01ee759c134f05740"];
+    
     self.crypto = [[CTNiceCrypto alloc] init];
     
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;

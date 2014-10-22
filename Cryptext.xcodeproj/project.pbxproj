@@ -35,6 +35,7 @@
 		3D12070918EEFDF400B226C3 /* CTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D12070818EEFDF400B226C3 /* CTWebViewController.m */; };
 		3D12070C18EF019300B226C3 /* howto.html in Resources */ = {isa = PBXBuildFile; fileRef = 3D12070B18EF019300B226C3 /* howto.html */; };
 		3D12070E18EF01A600B226C3 /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 3D12070D18EF01A600B226C3 /* credits.html */; };
+		3D1BF2E619F753380051B08E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1BF2E519F753380051B08E /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		3D12070818EEFDF400B226C3 /* CTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTWebViewController.m; sourceTree = "<group>"; };
 		3D12070B18EF019300B226C3 /* howto.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = howto.html; sourceTree = "<group>"; };
 		3D12070D18EF01A600B226C3 /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = credits.html; sourceTree = "<group>"; };
+		3D1BF2E519F753380051B08E /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D1206A618E7B45600B226C3 /* CoreGraphics.framework in Frameworks */,
+				3D1BF2E619F753380051B08E /* Crashlytics.framework in Frameworks */,
 				3D1206AA18E7B45600B226C3 /* CoreData.framework in Frameworks */,
 				3D1206A818E7B45600B226C3 /* UIKit.framework in Frameworks */,
 				3D1206A418E7B45600B226C3 /* Foundation.framework in Frameworks */,
@@ -144,6 +147,7 @@
 				3D1206A718E7B45600B226C3 /* UIKit.framework */,
 				3D1206A918E7B45600B226C3 /* CoreData.framework */,
 				3D1206CA18E7B45600B226C3 /* XCTest.framework */,
+				3D1BF2E519F753380051B08E /* Crashlytics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -223,6 +227,7 @@
 				3D12069D18E7B45600B226C3 /* Frameworks */,
 				3D12069E18E7B45600B226C3 /* Resources */,
 				3D1BF2E319F74DB90051B08E /* Bump Build Number */,
+				3D1BF2E419F752FF0051B08E /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -325,6 +330,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#\n# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list --all |wc -l`\nif [ $CONFIGURATION = \"Debug\" ]; then\nbranchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
+		};
+		3D1BF2E419F752FF0051B08E /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Crashlytics;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 0fcac72f0c942dac364ab6d01ee759c134f05740 392daf7f9093308e1872bed7c018db876965463ec134afebfcd056baeec3892e";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -471,6 +490,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cryptext/Cryptext-Prefix.pch";
 				INFOPLIST_FILE = "Cryptext/Cryptext-Info.plist";
@@ -486,6 +509,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cryptext/Cryptext-Prefix.pch";
 				INFOPLIST_FILE = "Cryptext/Cryptext-Info.plist";
