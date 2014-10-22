@@ -36,6 +36,9 @@
 		3D12070C18EF019300B226C3 /* howto.html in Resources */ = {isa = PBXBuildFile; fileRef = 3D12070B18EF019300B226C3 /* howto.html */; };
 		3D12070E18EF01A600B226C3 /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 3D12070D18EF01A600B226C3 /* credits.html */; };
 		3D1BF2E619F753380051B08E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1BF2E519F753380051B08E /* Crashlytics.framework */; };
+		3D1BF2F119F754E10051B08E /* ActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1BF2F019F754E10051B08E /* ActionViewController.m */; };
+		3D1BF2F319F754E10051B08E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D1BF2F219F754E10051B08E /* MainInterface.storyboard */; };
+		3D1BF2F619F754E10051B08E /* Action.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3D1BF2EB19F754E00051B08E /* Action.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +49,35 @@
 			remoteGlobalIDString = 3D12069F18E7B45600B226C3;
 			remoteInfo = Cryptext;
 		};
+		3D1BF2F419F754E10051B08E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D12069818E7B45600B226C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D1BF2EA19F754E00051B08E;
+			remoteInfo = Action;
+		};
+		3D1BF2F719F754E10051B08E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D12069818E7B45600B226C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D1BF2EA19F754E00051B08E;
+			remoteInfo = Action;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3D1BF2FC19F754E10051B08E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3D1BF2F619F754E10051B08E /* Action.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3D1206A018E7B45600B226C3 /* Lemon Juice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lemon Juice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +122,11 @@
 		3D12070B18EF019300B226C3 /* howto.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = howto.html; sourceTree = "<group>"; };
 		3D12070D18EF01A600B226C3 /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = credits.html; sourceTree = "<group>"; };
 		3D1BF2E519F753380051B08E /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		3D1BF2EB19F754E00051B08E /* Action.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Action.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D1BF2EE19F754E10051B08E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D1BF2EF19F754E10051B08E /* ActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionViewController.h; sourceTree = "<group>"; };
+		3D1BF2F019F754E10051B08E /* ActionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionViewController.m; sourceTree = "<group>"; };
+		3D1BF2F219F754E10051B08E /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +153,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3D1BF2E819F754E00051B08E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -125,6 +168,7 @@
 			children = (
 				3D1206AB18E7B45600B226C3 /* Cryptext */,
 				3D1206D118E7B45600B226C3 /* CryptextTests */,
+				3D1BF2EC19F754E00051B08E /* Action */,
 				3D1206A218E7B45600B226C3 /* Frameworks */,
 				3D1206A118E7B45600B226C3 /* Products */,
 			);
@@ -135,6 +179,7 @@
 			children = (
 				3D1206A018E7B45600B226C3 /* Lemon Juice.app */,
 				3D1206C918E7B45600B226C3 /* CryptextTests.xctest */,
+				3D1BF2EB19F754E00051B08E /* Action.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -216,6 +261,25 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		3D1BF2EC19F754E00051B08E /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				3D1BF2EF19F754E10051B08E /* ActionViewController.h */,
+				3D1BF2F019F754E10051B08E /* ActionViewController.m */,
+				3D1BF2F219F754E10051B08E /* MainInterface.storyboard */,
+				3D1BF2ED19F754E10051B08E /* Supporting Files */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		3D1BF2ED19F754E10051B08E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3D1BF2EE19F754E10051B08E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -228,10 +292,13 @@
 				3D12069E18E7B45600B226C3 /* Resources */,
 				3D1BF2E319F74DB90051B08E /* Bump Build Number */,
 				3D1BF2E419F752FF0051B08E /* Crashlytics */,
+				3D1BF2FC19F754E10051B08E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3D1BF2F519F754E10051B08E /* PBXTargetDependency */,
+				3D1BF2F819F754E10051B08E /* PBXTargetDependency */,
 			);
 			name = "Lemon Juice";
 			productName = Cryptext;
@@ -256,6 +323,23 @@
 			productReference = 3D1206C918E7B45600B226C3 /* CryptextTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		3D1BF2EA19F754E00051B08E /* Action */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D1BF2F919F754E10051B08E /* Build configuration list for PBXNativeTarget "Action" */;
+			buildPhases = (
+				3D1BF2E719F754E00051B08E /* Sources */,
+				3D1BF2E819F754E00051B08E /* Frameworks */,
+				3D1BF2E919F754E00051B08E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Action;
+			productName = Action;
+			productReference = 3D1BF2EB19F754E00051B08E /* Action.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -271,6 +355,10 @@
 					};
 					3D1206C818E7B45600B226C3 = {
 						TestTargetID = 3D12069F18E7B45600B226C3;
+					};
+					3D1BF2EA19F754E00051B08E = {
+						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = 3NYR88CJFE;
 					};
 				};
 			};
@@ -288,6 +376,7 @@
 			projectRoot = "";
 			targets = (
 				3D12069F18E7B45600B226C3 /* Lemon Juice */,
+				3D1BF2EA19F754E00051B08E /* Action */,
 				3D1206C818E7B45600B226C3 /* CryptextTests */,
 			);
 		};
@@ -311,6 +400,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D1206D618E7B45600B226C3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D1BF2E919F754E00051B08E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1BF2F319F754E10051B08E /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +473,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3D1BF2E719F754E00051B08E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1BF2F119F754E10051B08E /* ActionViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -383,6 +488,16 @@
 			isa = PBXTargetDependency;
 			target = 3D12069F18E7B45600B226C3 /* Lemon Juice */;
 			targetProxy = 3D1206CF18E7B45600B226C3 /* PBXContainerItemProxy */;
+		};
+		3D1BF2F519F754E10051B08E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D1BF2EA19F754E00051B08E /* Action */;
+			targetProxy = 3D1BF2F419F754E10051B08E /* PBXContainerItemProxy */;
+		};
+		3D1BF2F819F754E10051B08E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D1BF2EA19F754E00051B08E /* Action */;
+			targetProxy = 3D1BF2F719F754E10051B08E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -562,6 +677,40 @@
 			};
 			name = Release;
 		};
+		3D1BF2FA19F754E10051B08E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Action/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3D1BF2FB19F754E10051B08E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = Action/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -591,6 +740,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		3D1BF2F919F754E10051B08E /* Build configuration list for PBXNativeTarget "Action" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D1BF2FA19F754E10051B08E /* Debug */,
+				3D1BF2FB19F754E10051B08E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 
